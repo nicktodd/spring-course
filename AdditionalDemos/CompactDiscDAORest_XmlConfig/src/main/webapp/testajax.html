@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX Test</title>
+    <script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+    <script type="text/javascript">
+
+        alert("hello");
+
+        function goAndGetTheData() {
+
+            var request = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+            request.onreadystatechange = function() {
+                if (request.readyState == 4 && request.status == 200) {
+                    var myResult = JSON.parse(request.responseText);
+                    alert(myResult.personList[0].email);
+                    
+
+                }
+            };
+
+            request.open("GET", "rest/people", true);
+            request.send();
+
+        }
+        
+		//goAndGetTheData();
+        //setInterval(goAndGetTheData, 10000, true);
+
+        $(document).ready(function() {
+            $(".emptyToStart").html("Added from JQuery");
+        })
+
+
+    </script>
+
+
+</head>
+<body>
+<h1>List of People</h1>
+<div class="emptyToStart"></div>
+
+
+</body>
+</html>

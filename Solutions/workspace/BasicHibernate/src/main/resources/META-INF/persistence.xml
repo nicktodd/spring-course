@@ -1,0 +1,30 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+   <persistence-unit name="conygrePersistentUnit" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <!--  only entities marked as @Cacheable will be cached -->
+<!--      <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode> -->
+      <properties>
+      
+      
+         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+         <!--<property name="hibernate.hbm2ddl.auto" value="create-drop"/>-->
+         <property name="hibernate.show_sql" value="true"/>
+         <property name="hibernate.format_sql" value="true"/>
+<!--          <property name="hibernate.hbm2ddl.auto" value="update"/> -->
+		<property name="hibernate.connection.driver.class" value="com.mysql.jdbc.Driver"/>
+		<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/conygre"
+/>		<property name="hibernate.connection.username" value="root"/>
+		<property name="hibernate.connection.password" value="c0nygre"/>
+		
+		
+<!-- 	  <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory" /> -->
+<!--       <property name="hibernate.cache.use_second_level_cache" value="true"/> -->
+<!--       <property name="hibernate.cache.use_query_cache" value="true"/> -->
+<!--       <property name="hibernate.cache.region_prefix" value=""/> -->
+<!--       <property name="hibernate.cache.provider_configuration_file_resource_path" value="ehcache.xml"/> -->
+  </properties>
+   </persistence-unit>
+</persistence>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="cdService"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean">
+
+		<!-- This component is required if you choose to use HTTP as the protocol -->
+		<property name="serviceUrl"
+			value="http://localhost:8080/SpringRemotingHTTP/CompactDiscService" />
+
+		<!-- serviceInterface demonstrates Http Service Interface which is called -->
+		<property name="serviceInterface"
+			value="com.conygre.training.remoting.http.CompactDiscService" />
+
+	</bean>
+
+
+</beans>

@@ -1,0 +1,26 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.conygre.training</groupId>
+  <artifactId>AOPDemo</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>AOPDemo</name>
+  <dependencies>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-aspects</artifactId>
+    	<version>3.0.5.RELEASE</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.aspectj</groupId>
+    	<artifactId>aspectjrt</artifactId>
+    	<version>1.6.10</version>
+    	<type>jar</type>
+    	<scope>compile</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.aspectj</groupId>
+    	<artifactId>aspectjweaver</artifactId>
+    	<version>1.6.10</version>
+    </dependency>
+  </dependencies>
+</project>

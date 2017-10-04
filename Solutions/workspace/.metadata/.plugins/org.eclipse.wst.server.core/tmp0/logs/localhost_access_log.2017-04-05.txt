@@ -1,0 +1,8 @@
+127.0.0.1 - - [05/Apr/2017:10:54:57 +0100] "GET / HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [05/Apr/2017:10:54:58 +0100] "GET /CompactDiscRestJavaConfig/WEB-INF/classes/com/conygre/spring/controller/PersonController.java HTTP/1.1" 404 990
+0:0:0:0:0:0:0:1 - - [05/Apr/2017:10:55:49 +0100] "GET /BasicRESTApplication/people HTTP/1.1" 404 1046
+0:0:0:0:0:0:0:1 - - [05/Apr/2017:10:55:49 +0100] "GET /favicon.ico HTTP/1.1" 404 1014
+0:0:0:0:0:0:0:1 - - [05/Apr/2017:10:56:00 +0100] "GET /CompactDiscRestJavaConfig/ HTTP/1.1" 404 1044
+0:0:0:0:0:0:0:1 - - [05/Apr/2017:10:56:05 +0100] "GET /CompactDiscRestJavaConfig/people HTTP/1.1" 404 1056
+0:0:0:0:0:0:0:1 - - [05/Apr/2017:10:56:10 +0100] "GET /CompactDiscRestJavaConfig/api/people HTTP/1.1" 404 1064
+0:0:0:0:0:0:0:1 - - [05/Apr/2017:10:56:22 +0100] "GET /CompactDiscRestJavaConfig/rest/people HTTP/1.1" 404 1066

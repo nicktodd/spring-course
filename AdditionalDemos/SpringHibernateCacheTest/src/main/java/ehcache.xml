@@ -1,0 +1,27 @@
+<ehcache 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="ehcache.xsd">
+
+ <diskStore path="java.io.tmpdir/EhCacheSpringAnnotationsExampleApp" />
+
+
+<defaultCache
+maxElementsInMemory="500"
+eternal="true"
+timeToIdleSeconds="0"
+timeToLiveSeconds="1000"
+overflowToDisk="false" />
+
+<cache name="com.conygre.training.entities.CompactDisc" 
+maxElementsInMemory="500" eternal="true" timeToIdleSeconds="0" 
+timeToLiveSeconds="5000" overflowToDisk="false"/>
+
+<cache name="com.conygre.training.entities.Track" 
+maxElementsInMemory="500" eternal="true" timeToIdleSeconds="0" 
+timeToLiveSeconds="5000" overflowToDisk="false"/>
+
+ <cache name="testCache" eternal="false"
+        maxElementsInMemory="100" overflowToDisk="false" diskPersistent="false"
+        timeToIdleSeconds="0" timeToLiveSeconds="300"
+        memoryStoreEvictionPolicy="LRU" />
+</ehcache>

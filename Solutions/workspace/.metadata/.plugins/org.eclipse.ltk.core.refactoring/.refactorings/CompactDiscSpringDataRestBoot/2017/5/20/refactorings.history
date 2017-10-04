@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;AppConfig.java&apos; to &apos;SpringDataRestBoot/src/main/java&apos;&#x0A;- Original project: &apos;SpringDataRestBoot&apos;&#x0A;- Destination element: &apos;SpringDataRestBoot/src/main/java&apos;&#x0A;- Original element: &apos;AppConfig.java&apos;&#x0A;- Update references to refactored element" description="Move file" destination="/src\/main\/java" element1="AppConfig.java" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1495198306219" units="0" version="1.0"/>
+</session>

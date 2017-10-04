@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:repository="http://www.springframework.org/schema/data/repository"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd
+		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.8.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+		http://www.springframework.org/schema/data/repository http://www.springframework.org/schema/data/repository/spring-repository-1.11.xsd">
+
+ 	
+ 	<mongo:mongo id="mongo"/>
+
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg ref="mongo" />
+		<constructor-arg value="mydatabase" />
+	</bean>
+ 	
+ 	<jpa:repositories base-package="com.conygre.spring.data.repos" />
+	<mongo:repositories base-package="com.conygre.spring.data.repos"/>
+	<context:annotation-config />
+
+	<context:component-scan base-package="com.conygre"/>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="conygreDataSource" />
+		<property name="persistenceUnitName" value="conygreChapter8" />
+		<property name="jpaVendorAdapter" ref="vendorAdapter" />
+	</bean>
+	
+	<bean id="conygreDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/conygre" />
+		<property name="username" value="root" />
+		<property name="password" value="c0nygre" />
+	</bean>
+	
+	<tx:annotation-driven />
+	
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	      <property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+	<bean id="vendorAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+		<property name="showSql" value="true" />
+		<property name="generateDdl" value="false" />
+	</bean>
+</beans>

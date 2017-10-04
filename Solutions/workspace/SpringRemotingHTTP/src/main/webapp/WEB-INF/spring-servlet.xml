@@ -1,0 +1,73 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/util 
+            http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<bean name="compactDiscDAO" class="com.conygre.training.dao.fake.FakeCompactDiscDAO">
+		<property name="library">
+			<set>
+				<bean class="com.conygre.training.entities.CompactDisc">
+					<property name="artist" value="Hurts" />
+					<property name="title" value="Happiness" />
+				</bean>
+				<bean class="com.conygre.training.entities.CompactDisc">
+					<property name="title" value="The Resistance" />
+					<property name="artist" value="Muse" />
+
+				</bean>
+				<bean class="com.conygre.training.entities.CompactDisc">
+					<property name="title" value="My Worlds" />
+					<property name="artist" value="Justin Bieber" />
+				</bean>
+				<bean class="com.conygre.training.entities.CompactDisc">
+					<property name="title" value="Body Talk" />
+					<property name="artist" value="Robyn" />
+				</bean>
+			</set>
+		</property>
+	</bean>
+	<bean id="compactDiscService"
+		class="com.conygre.training.remoting.http.CompactDiscServiceImpl">
+		<property name="compactDiscDAO" ref="compactDiscDAO" />
+	</bean>
+
+	<!-- This component is required if you are using Http as the protocol Http 
+		Invoker Service Declaration -->
+	<bean id="HttpCompactDiscServiceExporter"
+		class="org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter">
+
+		<!-- service represents Service Impl -->
+		<property name="service" ref="compactDiscService" />
+
+		<!-- serviceInterface represents Http Service Interface which is exposed -->
+		<property name="serviceInterface"
+			value="com.conygre.training.remoting.http.CompactDiscService" />
+
+	</bean>
+
+
+
+	<!-- Mapping configurations from URLs to request handler beans -->
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/CompactDiscService">HttpCompactDiscServiceExporter</prop>
+			</props>
+		</property>
+	</bean>
+
+
+
+	<bean name="/CompactDiscServiceHessian"
+		class="org.springframework.remoting.caucho.HessianServiceExporter">
+		<property name="service" ref="compactDiscService" />
+		<property name="serviceInterface"
+			value="com.conygre.training.remoting.http.CompactDiscService" />
+	</bean>
+
+
+
+</beans>

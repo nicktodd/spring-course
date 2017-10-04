@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.conygre.spring</groupId>
+  <artifactId>ConnectionPoolExample</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>ConnectionPoolExample</name>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>3.0.5.RELEASE</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+    	<groupId>mysql</groupId>
+    	<artifactId>mysql-connector-java</artifactId>
+    	<version>5.1.16</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-context</artifactId>
+    	<version>3.0.5.RELEASE</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.apache.openejb</groupId>
+    	<artifactId>commons-dbcp-all</artifactId>
+    	<version>1.3-r699049</version>
+    </dependency>
+  </dependencies>
+</project>

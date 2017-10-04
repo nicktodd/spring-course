@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd">
+ 
+  <context:component-scan base-package="com.conygre.spring.jms" />
+ 
+  <bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+    <constructor-arg index="0" value="tcp://localhost:61616" />
+  </bean>
+ 
+  <bean id="connectionFactory"
+    class="org.springframework.jms.connection.CachingConnectionFactory">
+    <constructor-arg ref="amqConnectionFactory" />
+  </bean>
+ 
+  
+  <bean id="defaultDestination" class="org.apache.activemq.command.ActiveMQQueue">
+    <constructor-arg index="0" value="queue/testQueue" />
+  </bean>
+ 
+  
+  <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+    <property name="connectionFactory" ref="connectionFactory" />
+    <property name="defaultDestination" ref="defaultDestination" />
+  </bean>
+ 
+ 
+ 
+  <bean id = "messageListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+    <property name="connectionFactory" ref="connectionFactory"/>
+    <property name="destinationName" value="queue/testQueue"/>
+    <property name="messageListener" ref="myMessageReceiver"/>
+  </bean> 
+ 
+</beans>

@@ -1,0 +1,22 @@
+/*h1 {
+    color: bisque;
+    background-color: chartreuse;
+}*/
+
+/*span.redText {*/
+    /*color: red;*/
+/*}*/
+
+/*#myHeading {*/
+    /*color: darkblue;*/
+/*}*/
+
+h1 + span {
+
+    color:red;
+
+}
+
+.bigText {
+    font-size: 40px;
+}

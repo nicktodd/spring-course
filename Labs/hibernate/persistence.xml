@@ -1,0 +1,22 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+   version="1.0">
+   <persistence-unit name="SET NAME HERE" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+      <properties>
+         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
+        
+         <property name="hibernate.show.sql" value="true"/>
+         <property name="hibernate.format.sql" value="true"/>
+         
+         
+	<!-- PROVIDE THE URL, USERNAME, DRIVER, and PASSWORD as properties
+		The URL is jdbc:mysql://localhost:3306/conygre, the driver is com.mysql.jdbc.Driver
+	 the username is root and the password is c0nygre
+ 	-->
+         
+      </properties>
+   </persistence-unit>
+</persistence>
