@@ -12,6 +12,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+
 import java.io.Serializable;
 
 //Adding caching
@@ -50,7 +51,7 @@ public class Track implements Serializable {
   // bidirectional
   @JoinColumn (name="cd_id", referencedColumnName="id", nullable = false)
   @ManyToOne
-  @JsonIgnore // required when marshalling to JSON to stop the recursive CD > Track > CD happening
+  @JsonIgnore
   private CompactDisc disc;
   
 
@@ -60,6 +61,7 @@ public class Track implements Serializable {
 
 public void setDisc(CompactDisc disc) {
 	this.disc = disc;
+	
 }
 
 //constructors

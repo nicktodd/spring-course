@@ -10,6 +10,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cascade;
@@ -105,6 +106,7 @@ public class CompactDisc implements Serializable {
 	}
 
 	// Adding relationships 
+	@JsonIgnore
 	@OneToMany(mappedBy="disc", cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	private List<Track> trackTitles = new ArrayList<Track>();
 
