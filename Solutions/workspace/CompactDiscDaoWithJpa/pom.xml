@@ -4,9 +4,9 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.conygre.spring4.rest</groupId>
-	<artifactId>Spring4Rest</artifactId>
+	<artifactId>CompactDiscDaoWithJpa</artifactId>
 	<version>1.0.0</version>
-	<name>Spring4RestWithJpa</name>
+	<name>CompactDiscDaoWithJpa</name>
 
 	<properties>
 		<springframework.version>4.3.7.RELEASE</springframework.version> <!-- 4.3.0.RELEASE -->
