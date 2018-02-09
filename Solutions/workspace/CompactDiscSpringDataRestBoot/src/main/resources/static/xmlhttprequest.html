@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XmlHttpRequest Example</title>
+
+    <script>
+        var request = new XMLHttpRequest();
+
+        function btnClick(evt) {
+            request.open("GET", "/api/compactDiscs", true);
+            request.onreadystatechange = receiveCds;
+            request.send(null);
+        }
+
+        function receiveCds() {
+            if (request.readyState== 4 && request.status == 200) {
+                var cdList = JSON.parse(request.responseText);
+                var cdTitleDiv = document.getElementById("cd_title");
+                cdTitleDiv.innerHTML = cdList._embedded.compactDiscs[0].title;
+            }
+        }
+
+    </script>
+
+</head>
+<body>
+<h1>XmlHttpRequest Example</h1>
+
+<div id="cd_title">
+
+</div>
+
+<input type="button" id="getCDBtn" onClick="btnClick()" value="Get data">
+
+
+
+</body>
+</html>

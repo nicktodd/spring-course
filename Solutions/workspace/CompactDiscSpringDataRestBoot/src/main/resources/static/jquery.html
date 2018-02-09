@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery Client</title>
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+
+    <script>
+        /* shorthand for document.ready */
+        $(document).ready(function() {
+            $(".btn").click(function(e) {
+               $.ajax({
+                   type: "GET",
+                   url: "/api/compactDiscs",
+                   success: function(jsonData) {
+                        $("#cdTitle").text(jsonData._embedded.compactDiscs[0].title);
+                   },
+                   dataType: "json"
+               }) ;
+            });
+        });
+    </script>
+</head>
+<body>
+
+<h1>JQuery Example</h1>
+<div id="cdTitle"></div>
+
+<input class="btn" type="button" value="Do a JQuery AJAX">
+
+</body>
+</html>
