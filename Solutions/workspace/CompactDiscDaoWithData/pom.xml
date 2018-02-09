@@ -4,9 +4,9 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.conygre.spring4.rest</groupId>
-	<artifactId>Spring4Rest</artifactId>
+	<artifactId>CompactDiscDaoSpringData</artifactId>
 	<version>1.0.0</version>
-	<name>CompactDiscDaoSpringDataJavaConfig</name>
+	<name>CompactDiscDaoSpringData</name>
 
 	<dependencyManagement>
 		<dependencies>
