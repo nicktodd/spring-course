@@ -1,6 +1,6 @@
 package com.conygre.spring.boot.services;
 
-import com.conygre.training.entities.CompactDisc;
+import com.conygre.spring.boot.entities.CompactDisc;
 
 public interface CompactDiscService {
 	Iterable<CompactDisc> getCatalog();

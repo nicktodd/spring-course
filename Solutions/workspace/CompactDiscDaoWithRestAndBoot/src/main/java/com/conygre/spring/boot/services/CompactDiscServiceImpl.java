@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.conygre.spring.boot.repos.CompactDiscRepository;
-import com.conygre.training.entities.CompactDisc;
+import com.conygre.spring.boot.entities.CompactDisc;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 

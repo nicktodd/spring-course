@@ -1,7 +1,7 @@
 package com.conygre.spring.boot.rest;
 
 import com.conygre.spring.boot.services.CompactDiscService;
-import com.conygre.training.entities.CompactDisc;
+import com.conygre.spring.boot.entities.CompactDisc;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +20,14 @@ public class CompactDiscController {
 
 	@ApiOperation(value = "findAll", nickname = "findAll")
 	@RequestMapping(method = RequestMethod.GET)
-	Iterable<CompactDisc> findAll() {
+	public Iterable<CompactDisc> findAll() {
 		logger.info("managed to call a Get request for findAll");
 
 		return service.getCatalog();
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
-	CompactDisc getCdById(@PathVariable("id") int id) {
+	public CompactDisc getCdById(@PathVariable("id") int id) {
 		return service.getCompactDiscById(id);
 	}
 
