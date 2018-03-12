@@ -7,6 +7,14 @@
 	<name>BasicHibernate</name>
 
 	<dependencies>
+		<!-- log4j required to allow the log file to work -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
+
 		<!-- MySQL JDBC connector -->
 		<dependency>
 			<groupId>mysql</groupId>
