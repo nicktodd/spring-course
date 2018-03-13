@@ -18,14 +18,14 @@ public class CompactDiscService {
 	@Autowired	
 	private CompactDiscRepository dao;
 	
-	
+
 	@Transactional (propagation = Propagation.REQUIRES_NEW)
 	public void addToCatalog(CompactDisc disc) {
 		dao.save(disc);
 	}
 	
 	public Collection<CompactDisc> getCatalog() {
-		return makeCollection(dao.findAll());
+		return dao.findAll();
 	}
 
 	public CompactDisc getCompactDiscById(int id) {
