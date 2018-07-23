@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+
+
+        fetch('api/compactdiscs').then(function(result) {
+
+            return result.json();
+
+        }).then(function (cdList) {
+
+            document.getElementById("cdDiv").innerHTML = cdList[0].title + " " + cdList[0].artist;
+
+        });
+
+
+    </script>
+</head>
+<body>
+<div id="cdDiv"></div>
+</body>
+</html>

@@ -6,5 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface  CompactDiscRepository extends CrudRepository<CompactDisc, Integer> {
+
+
 	public Iterable<CompactDisc> findByArtist(String artist);
 }
