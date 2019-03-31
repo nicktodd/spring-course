@@ -10,8 +10,8 @@ public class TestPrivatePilot {
 		Pilot pilot = (Pilot)context.getBean("privatePilot");
 		pilot.takeOff();
 		pilot.navigate();
-		pilot.land();		
-		
+		pilot.land();
+
 		System.out.println(pilot.getClass());
 	}
 }

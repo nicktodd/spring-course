@@ -14,7 +14,7 @@
 		http://www.springframework.org/schema/tx 
 		http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-	<!-- <bean name="compactDiscDAO" class="com.conygre.training.dao.fake.FakeCompactDiscDAO">
+	<!--<bean name="compactDiscDAO" class="com.conygre.training.dao.fake.FakeCompactDiscDAO">
 	<property name="library">
 		<set>
 			<bean class="com.conygre.training.entities.CompactDisc">
@@ -35,9 +35,9 @@
 			</bean>
 		</set>
 	</property>
-</bean> -->
+</bean>-->
 
-	<!-- <bean name="compactDiscDAO" class="com.conygre.training.dao.jpa.JPACompactDiscDAO"/> -->
+	 <!--<bean name="compactDiscDAO" class="com.conygre.training.dao.jpa.JPACompactDiscDAO"/>-->
 
 	<bean name="compactDiscService" class="com.conygre.training.services.CompactDiscService">
 		<property name="dao" ref="compactDiscDAO" />
@@ -55,9 +55,6 @@
 		<property name="jpaVendorAdapter" ref="vendorAdapter" />
 	</bean>
 
-
-
-
 	<bean id="vendorAdapter"
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 		<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect" />
@@ -65,12 +62,12 @@
 		<property name="generateDdl" value="false" />
 	</bean>
 
-	<bean name="compactDiscDAO" class="com.conygre.training.dao.jdbc.CompactDiscDAOJDBC">
+	<!--<bean name="compactDiscDAO" class="com.conygre.training.dao.jdbc.CompactDiscDAOJDBC">
 		<property name="dataSource" ref="conygreDataSource" />
-	</bean> 
+	</bean>-->
 	
-	<!-- <bean name="compactDiscDAO" class="com.conygre.training.dao.spring.jpa.SpringJPACompactDiscDAO"/> 
--->
+	<bean name="compactDiscDAO" class="com.conygre.training.dao.spring.jpa.SpringJPACompactDiscDAO"/>
+
 	<bean id="conygreDataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />

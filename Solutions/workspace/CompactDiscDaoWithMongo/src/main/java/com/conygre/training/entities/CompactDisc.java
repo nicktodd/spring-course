@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class CompactDisc {
 
+	@Id
     private ObjectId id;
     private String title;
     private String artist;

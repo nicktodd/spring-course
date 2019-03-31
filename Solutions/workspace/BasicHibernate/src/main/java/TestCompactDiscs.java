@@ -25,7 +25,7 @@ public class TestCompactDiscs {
 
 
 
-		Query query = em.createQuery("from CompactDisc");
+		Query query = em.createQuery("from CompactDisc a");
 		List<CompactDisc> discs = query.getResultList();
 
 		for (CompactDisc compactDisc : discs) {

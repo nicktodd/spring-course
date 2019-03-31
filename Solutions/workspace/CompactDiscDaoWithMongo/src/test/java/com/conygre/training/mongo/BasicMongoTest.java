@@ -38,7 +38,7 @@ public class BasicMongoTest {
         assertEquals(3,discs.size());
 
     }
-    @After
+   // @After
     public void cleanUp() {
         for (String collectionName : mongoTemplate.getCollectionNames()) {
             if (!collectionName.startsWith("system.")) {

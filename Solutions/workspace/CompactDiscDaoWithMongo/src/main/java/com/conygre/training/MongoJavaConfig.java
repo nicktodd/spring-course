@@ -10,10 +10,12 @@ import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 @ComponentScan
 public class MongoJavaConfig extends AbstractMongoConfiguration{
 
+	@Override
     protected String getDatabaseName() {
         return "mydatabase";
     }
 
+	@Override
     public Mongo mongo() throws Exception {
         return new MongoClient("127.0.0.1", 27017);
     }

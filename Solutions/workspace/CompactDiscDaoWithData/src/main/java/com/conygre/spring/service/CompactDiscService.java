@@ -1,6 +1,5 @@
 package com.conygre.spring.service;
 
-
 import com.conygre.spring.dao.CompactDiscRepository;
 import com.conygre.spring.entities.CompactDisc;
 
@@ -11,32 +10,32 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collection;
-@Service
-@Transactional (propagation = Propagation.REQUIRED)
-public class CompactDiscService {
-	
-	@Autowired	
-	private CompactDiscRepository dao;
-	
 
-	@Transactional (propagation = Propagation.REQUIRES_NEW)
+@Service
+@Transactional(propagation = Propagation.REQUIRED)
+public class CompactDiscService {
+
+	@Autowired
+	private CompactDiscRepository dao;
+
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void addToCatalog(CompactDisc disc) {
 		dao.save(disc);
 	}
-	
+
 	public Collection<CompactDisc> getCatalog() {
 		return dao.findAll();
 	}
 
 	public CompactDisc getCompactDiscById(int id) {
-		return dao.findOne(id);
+		return dao.findById(id);
 	}
-	
+
 	private static Collection<CompactDisc> makeCollection(Iterable<CompactDisc> iter) {
-	    Collection<CompactDisc> list = new ArrayList<>();
-	    for (CompactDisc item : iter) {
-	        list.add(item);
-	    }
-	    return list;
+		Collection<CompactDisc> list = new ArrayList<>();
+		for (CompactDisc item : iter) {
+			list.add(item);
+		}
+		return list;
 	}
 }

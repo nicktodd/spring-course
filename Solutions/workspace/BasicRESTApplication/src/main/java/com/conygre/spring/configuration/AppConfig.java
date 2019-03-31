@@ -15,9 +15,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @ComponentScan(basePackages = "com.conygre.spring")
 public class AppConfig extends WebMvcConfigurerAdapter{
 	
-	
-	
-	
 	/**
      * Configure ResourceHandlers to serve static resources like CSS/ Javascript etc...
      */

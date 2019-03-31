@@ -29,7 +29,7 @@ public class CompactDiscServiceTest {
 
 
     @Test
-    @Ignore
+    //@Ignore
     public void getAllCDsThroughServiceLayerAndRetrieve() {
         service.addToCatalog(new CompactDisc("Risque", "Chic", 12.99));
         // get the first item from the iterator

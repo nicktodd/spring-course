@@ -46,6 +46,13 @@ public class Application {
         JmsTemplate jmsTemplate = context.getBean(JmsTemplate.class);
         System.out.println("Sending a new message.");
         jmsTemplate.send("queue/testQueue", messageCreator);
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

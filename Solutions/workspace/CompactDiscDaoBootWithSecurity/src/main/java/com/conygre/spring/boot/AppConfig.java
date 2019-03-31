@@ -13,6 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("com.conygre.training.entities")
 public class AppConfig {
 	    public static void main(String[] args) {
-	        SpringApplication.run(AppConfig.class, args);
-	    }
+
+	    	SpringApplication.run(AppConfig.class, args);
+		}
 }

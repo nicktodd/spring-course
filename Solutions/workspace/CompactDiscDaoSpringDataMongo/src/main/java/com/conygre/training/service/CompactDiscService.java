@@ -1,13 +1,11 @@
 package com.conygre.training.service;
 
-import com.conygre.training.dao.CompactDiscDAO;
 import com.conygre.training.data.CompactDiscRepository;
 import com.conygre.training.entities.CompactDisc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
-import java.util.Collection;
+
+import java.util.List;
 
 @Service
 public class CompactDiscService {
@@ -20,8 +18,17 @@ public class CompactDiscService {
         dao.insert(disc);
     }
 
-    public Iterable<CompactDisc> getCatalog() {
+    public List<CompactDisc> getCatalog() {
         return dao.findAll();
     }
+
+    public List<CompactDisc> findByArtist(String artist) {
+        return dao.customFindByArtist(artist);
+    }
+
+    public List<CompactDisc> findByTitle(String title) {
+        return dao.findByTitle(title);
+    }
+
 
 }

@@ -45,6 +45,8 @@ public class CompactDisc implements Serializable {
 	private int id;
 
 	// add attributes for all the remaining properties
+
+
 	@Column(name="title") private String title;
 	@Column(name="artist") private String artist;
 	@Column(name="price") private Double price;

@@ -2,6 +2,7 @@ package com.conygre.spring.boot.rest;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Role;
 import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +22,10 @@ public class CompactDiscController {
 
 	 @Autowired
 	  private  CompactDiscService service;
-	
+
+
+
+	 
 	  @RequestMapping(method = RequestMethod.GET)
 	    Iterable<CompactDisc> findAll() {
 	        return service.getCatalog();

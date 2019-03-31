@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TestSpringJpa",
+            "request": "launch",
+            "mainClass": "TestSpringJpa",
+            "projectName": "CompactDiscDaoWithJpa"
+        }
+    ]
+}

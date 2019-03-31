@@ -1,38 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<link href="test.css" rel="stylesheet" type="text/css" />
-<meta charset="UTF-8">
-<title></title>
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script lang="JavaScript" src="test.js"></script>
 
+    <link rel="stylesheet" href="css/cd.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="js/jquery.base64.js"></script>
+    <script type="application/javascript">
+
+        $(document).ready(function () {
+            $.ajax({
+                        type: "GET",
+                        url: "/compactdiscs",
+
+                        dataType: "json",
+                        error: function (xhr, status, error) {
+                            alert("Error:-" + error);
+                        },
+                        success: function (json) {
+
+                            var tbl_body = "";
+                            var odd_even = false;
+                            $.each(json, function () {
+                                var tbl_row = "";
+                                $.each(this, function (k, v) {
+                                    if (k == "trackTitles") {
+                                        return;
+                                    }
+                                    tbl_row += "<td>" + v + "</td>";
+                                })
+                                tbl_body += "<tr class=\"" + ( odd_even ? "odd" : "even") + "\">" + tbl_row + "</tr>";
+                                odd_even = !odd_even;
+                            })
+                            $("#cdTable tbody").html(tbl_body);
+                        }
+                    }
+            );
+        });
+
+
+
+    </script>
+
+    <meta charset="UTF-8">
+    <title>CompactDisc Page</title>
 </head>
 <body>
 
-	<div>
-		<ul id="cdHolder">
+<h1>Compact Disc Catalog</h1>
 
+<table id="cdTable">
+    <tbody>
 
-
-		</ul>
-
-		<input type="button" id="addCDButton" value="Send" />
-
-<hr>
-Please enter a new album
-<br>
-Title: <input type="text" id="titleField">
-<br>
-Artist: <input type="text" id="artistField">
-<br>
-Price: <input type="text" id="priceField">
-<br>
-Number of Tracks: <input type="text" id="tracksField">
-<br>
-<input type="button" id="addCdBtn" value="Add CD">
-
-
-	</div>
+    </tbody>
+</table>
+</div>
 </body>
 </html>

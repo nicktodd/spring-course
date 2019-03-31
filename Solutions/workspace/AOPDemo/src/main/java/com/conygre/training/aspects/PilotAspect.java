@@ -8,6 +8,8 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.DeclarePrecedence;
 import org.aspectj.lang.annotation.Pointcut;
 
+import java.sql.SQLException;
+
 @Aspect
 public class PilotAspect {
 
@@ -33,15 +35,13 @@ public class PilotAspect {
 		System.out.println("Run through the checklist first!");
 	}
 	
-	
-	
 	@AfterThrowing(pointcut="landingChecks()", throwing="ex")
 	public void getOutQuick(NullPointerException ex) {
 		System.out.println("Got a null pointer, so better get out");
 	}
 	
 	@Around("lookOut()")
-	public void look(ProceedingJoinPoint joinPoint) throws Throwable { 
+	public void look(ProceedingJoinPoint joinPoint) throws Throwable {
 		System.out.println("Have a good lookout");
 		joinPoint.proceed();
 		System.out.println("And lookout some more!");

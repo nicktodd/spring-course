@@ -8,14 +8,15 @@ import com.conygre.spring.boot.entities.CompactDisc;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
 @Service
 public class CompactDiscServiceImpl implements CompactDiscService {
-	
+
 	@Autowired
 	private CompactDiscRepository dao;
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.conygre.spring.boot.services.ICompactDiscService#getCatalog()
 	 */
 	@Transactional(propagation = Propagation.REQUIRED)
@@ -29,7 +30,7 @@ public class CompactDiscServiceImpl implements CompactDiscService {
 
 	@Override
 	public CompactDisc getCompactDiscById(int id) {
-		return dao.findOne(id);
+		return dao.findById(id).get();
 	}
 
 	@Override
@@ -38,7 +39,6 @@ public class CompactDiscServiceImpl implements CompactDiscService {
 		return dao.save(disc);
 	}
 
-	
 	@Override
 	public CompactDisc updateCompactDisc(CompactDisc disc) {
 		return dao.save(disc);
@@ -46,12 +46,13 @@ public class CompactDiscServiceImpl implements CompactDiscService {
 
 	@Override
 	public void deleteCompactDisc(int id) {
-		dao.delete(id);
-		
+		CompactDisc toBeDeleted = dao.findById(id).get();
+		deleteCompactDisc(toBeDeleted);
+
 	}
 
 	@Override
 	public void deleteCompactDisc(CompactDisc disc) {
-		deleteCompactDisc(disc.getId());
+		dao.delete(disc);
 	}
 }

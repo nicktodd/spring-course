@@ -19,6 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**", "/img/**").permitAll()
                 .antMatchers("/api/**").authenticated()
                 .antMatchers("/index.html").authenticated()
+                .antMatchers("/").authenticated()
                 .and().formLogin()
                 .loginPage("/login")
                 .permitAll()
@@ -35,5 +36,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .inMemoryAuthentication()
                 .withUser("admin").password("adminadmin").roles("USER");
+
     }
 }

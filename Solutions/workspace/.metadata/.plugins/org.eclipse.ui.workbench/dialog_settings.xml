@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="WorkbenchPreferenceDialogSettings">
-		<item value="-467" key="DIALOG_X_ORIGIN"/>
-		<item value="-463" key="DIALOG_Y_ORIGIN"/>
+		<item value="6" key="DIALOG_X_ORIGIN"/>
+		<item value="6" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="EditorSelectionDialog">
 		<item value="false" key="EditorSelectionDialog.STORE_ID_INTERNAL_EXTERNAL"/>

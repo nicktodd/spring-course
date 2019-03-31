@@ -3,11 +3,7 @@ package com.conygre.training.dao.jpa;
 import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.*;
 
 import com.conygre.training.dao.CompactDiscDAO;
 import com.conygre.training.entities.CompactDisc;
@@ -24,7 +20,7 @@ public class JPACompactDiscDAO implements CompactDiscDAO {
 		EntityManager em = factory.createEntityManager();
 		return em;
 	}
-	
+
 	
 	public void addCompactDisc(CompactDisc disc) {
 		EntityManager em = getEntityManager();

@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - SampleQueries",
+            "request": "launch",
+            "mainClass": "SampleQueries",
+            "projectName": "basichibernate"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - LifecycleTest",
+            "request": "launch",
+            "mainClass": "LifecycleTest",
+            "projectName": "basichibernate"
+        }
+    ]
+}

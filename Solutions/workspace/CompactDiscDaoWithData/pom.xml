@@ -13,7 +13,7 @@
 			<dependency>
 				<groupId>org.springframework.data</groupId>
 				<artifactId>spring-data-releasetrain</artifactId>
-				<version>Gosling-RELEASE</version>
+				<version>Lovelace-RELEASE</version>
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>

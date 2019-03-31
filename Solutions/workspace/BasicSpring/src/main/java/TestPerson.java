@@ -7,8 +7,6 @@ import com.conygre.spring.beans.Person;
 import com.conygre.spring.components.Car;
 
 
-
-
 public class TestPerson {
 
 	/**

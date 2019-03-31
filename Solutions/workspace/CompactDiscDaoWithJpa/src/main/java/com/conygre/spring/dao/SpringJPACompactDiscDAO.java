@@ -33,10 +33,8 @@ public class SpringJPACompactDiscDAO implements CompactDiscDAO{
 	}
 	
 	public void addCompactDisc(CompactDisc disc) {
-		Query query = em.createQuery("from CompactDisc");
-		List<CompactDisc> discs = query.getResultList(); 
-		if (!discs.contains(disc))
-			em.persist(disc);
+
+		em.persist(disc);
 	}
 
 	public CompactDisc getCompactDiscByTitle(String title) {

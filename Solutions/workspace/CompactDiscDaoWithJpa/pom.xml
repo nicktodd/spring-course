@@ -9,8 +9,8 @@
 	<name>CompactDiscDaoWithJpa</name>
 
 	<properties>
-		<springframework.version>4.3.7.RELEASE</springframework.version> <!-- 4.3.0.RELEASE -->
-		<hibernate.version>5.2.9.Final</hibernate.version> <!-- 4.3.10.Final -->
+		<springframework.version>5.1.5.RELEASE</springframework.version> <!-- 4.3.0.RELEASE -->
+		<hibernate.version>5.4.2.Final</hibernate.version> <!-- 4.3.10.Final -->
 		<mysql.connector.version>5.1.31</mysql.connector.version>
 	</properties>
 

@@ -4,11 +4,13 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.experian.training"/>
 			<item value="com.conygre.training"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="TempBasicSpring"/>
 			<item value="SpringDataRestBoot"/>
 		</list>
 		<list key="projectNameTemplate">

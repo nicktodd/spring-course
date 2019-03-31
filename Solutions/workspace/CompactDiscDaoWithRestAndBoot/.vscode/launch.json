@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - AppConfig",
+            "request": "launch",
+            "mainClass": "com.conygre.spring.boot.AppConfig",
+            "projectName": "CompactDiscRestDataBoot"
+        }
+    ]
+}

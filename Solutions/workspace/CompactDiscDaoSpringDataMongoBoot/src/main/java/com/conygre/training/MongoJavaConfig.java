@@ -13,6 +13,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 public class MongoJavaConfig {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(MongoJavaConfig.class, args);
 	}
 }
