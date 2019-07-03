@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ImageStream
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mysql
+  name: mysql
+spec:
+  tags:
+  - annotations: null
+    from:
+      kind: DockerImage
+      name: dockerreg.conygre.com:5000/cd/mysql:1.0.0
+    generation: null
+    importPolicy:
+       insecure: true
+    name: 1.0.0
+status:
+  dockerImageRepository: ""

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Route
+metadata:
+  name: cds
+spec:
+  host: cds.appsrvdev.conygre.com
+  port:
+    targetPort: '8080'
+  to:
+    kind: Service
+    name: cds

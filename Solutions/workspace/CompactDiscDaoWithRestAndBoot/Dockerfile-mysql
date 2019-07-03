@@ -1,0 +1,5 @@
+FROM mysql:5.7.19
+EXPOSE 3306
+RUN mkdir /app
+COPY sql/createTables.sql /docker-entrypoint-initdb.d
+

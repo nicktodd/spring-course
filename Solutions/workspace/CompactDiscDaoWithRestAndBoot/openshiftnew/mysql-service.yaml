@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\windows\system32\kompose.exe convert -f ../docker-compose.yaml
+      --provider=openshift
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mysql
+  name: mysql
+spec:
+  ports:
+  - name: "3306"
+    port: 3306
+    targetPort: 3306
+  selector:
+    io.kompose.service: mysql
+status:
+  loadBalancer: {}

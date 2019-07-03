@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="css/cd.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+    <script type="application/javascript">
+
+        $(document).ready(function () {
+            $.ajax({
+                        type: "GET",
+                        url: "/api/compactdiscs",
+
+                        dataType: "json",
+                        error: function (xhr, status, error) {
+                            alert("Error:-" + error);
+                        },
+                        success: function (json) {
+
+                            var tbl_body = "";
+                            var odd_even = false;
+                            $.each(json, function () {
+                                var tbl_row = "";
+                                $.each(this, function (k, v) {
+                                    if (k == "trackTitles") {
+                                        return;
+                                    }
+                                    tbl_row += "<td>" + v + "</td>";
+                                })
+                                tbl_body += "<tr class=\"" + ( odd_even ? "odd" : "even") + "\">" + tbl_row + "</tr>";
+                                odd_even = !odd_even;
+                            })
+                            $("#cdTable tbody").html(tbl_body);
+                        }
+                    }
+            );
+        });
+
+
+
+    </script>
+
+    <meta charset="UTF-8">
+    <title>CompactDisc Page</title>
+</head>
+<body>
+
+<h1>Compact Disc Catalog</h1>
+
+<table id="cdTable">
+    <tbody>
+
+    </tbody>
+</table>
+</div>
+</body>
+</html>

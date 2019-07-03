@@ -1,0 +1,30 @@
+version: '3.0'
+
+services:
+   mysql:
+     container_name: mysql
+     build:
+       context: .
+       dockerfile: Dockerfile-mysql
+     image: cd/mysql:1.0.0
+     ports:
+       - "3306:3306"
+     volumes:
+           - /docker/cds/mysql:/var/lib/mysql
+     restart: always
+     environment:
+       MYSQL_ROOT_PASSWORD: c0nygre1
+     command: --explicit_defaults_for_timestamp
+
+
+   cd:
+     container_name: cd-server
+     build:
+       context: .
+       dockerfile: Dockerfile-cd-server
+     image: cd/cd-server:1.0.0
+     links:
+       - mysql:mysql
+     ports:
+       - "8080:8080"
+     restart: always

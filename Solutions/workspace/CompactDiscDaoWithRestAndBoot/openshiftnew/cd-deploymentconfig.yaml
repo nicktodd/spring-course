@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    kompose.cmd: C:\windows\system32\kompose.exe convert -f ../docker-compose.yaml
+      --provider=openshift
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: cd
+  name: cd
+spec:
+  replicas: 1
+  selector:
+    io.kompose.service: cd
+  strategy:
+    resources: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: cd
+    spec:
+      containers:
+      - image: ' '
+        name: cd-server
+        ports:
+        - containerPort: 8080
+        resources: {}
+      restartPolicy: Always
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - cd-server
+      from:
+        kind: ImageStreamTag
+        name: cd:1.0.0
+    type: ImageChange
+status: {}

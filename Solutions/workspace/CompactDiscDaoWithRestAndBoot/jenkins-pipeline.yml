@@ -1,0 +1,102 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: cd-pipeline
+spec:
+  strategy:
+    jenkinsPipelineStrategy:
+      jenkinsfile: |-
+        pipeline {
+          agent { label "maven" }
+          stages {
+            stage("Clone Source") {
+              steps {
+                checkout([$class: 'GitSCM',
+                            branches: [[name: '*/master']],
+                            extensions: [
+                              [$class: 'RelativeTargetDirectory', relativeTargetDir: 'Solutions/workspace/CompactDiscDaoWithRestAndBoot']
+                            ],
+                            userRemoteConfigs: [[url: 'https://github.com/nicktodd/spring-course.git']]
+                        ])
+              }
+            }
+            stage("Build JAR") {
+              steps {
+                dir('cd') {
+                  sh 'mvn -Dmaven.test.skip=true clean package'
+                }
+              }
+            }
+            stage("Create Build For Spring Boot Server") {
+              steps {
+                dir('cds') {
+                  sh 'oc new-build --strategy docker --binary --name cds || echo "Build already exists"'
+                }
+              }
+            }
+            stage("Build Spring Boot Server Image") {
+              steps {
+                dir('cds') {
+                  sh 'cp Dockerfile-cd-server Dockerfile'
+                  sh 'oc start-build cds --from-dir . --follow && rm Dockerfile'
+                }
+              }
+            }
+            stage("Create Build For Database Server") {
+              steps {
+                dir('cds') {
+                  sh 'oc new-build --strategy docker --binary --name mysql || echo "Build already exists"'
+                }
+              }
+            }
+            stage("Build Database Image") {
+              steps {
+                dir('cds') {
+                  sh 'cp Dockerfile-mysql Dockerfile'
+                  sh 'oc start-build mysql --from-dir . --follow && rm Dockerfile'
+                }
+              }
+            }
+            stage("Create persistent storage") {
+              steps {
+                dir('cds') {
+                  sh '(oc get PersistentVolumeClaim | grep mysql-claim0) || oc apply -f openshift/mysql-claim0-persistentvolumeclaim.yaml'
+                }
+              }
+            }
+            stage("Create Deployment Config") {
+              steps {
+                dir('cds') {
+                  sh '(oc get deploymentconfig | grep mysql) || oc apply -f openshift/mysql-deploymentconfig.yaml'
+                  sh '(oc get deploymentconfig | grep cds) || oc apply -f openshift/cd-server-deploymentconfig.yaml'
+                  sh 'oc expose svc/cds || echo "cds already exposed"'
+                }
+              }
+            }
+            stage("Create Services and rollout deployment") {
+              steps {
+                dir('cds') {
+                  sh '(oc get svc | grep mysql) || oc apply -f openshift/mysql-service.yaml'
+                  sh '(oc get svc | grep cds) || oc apply -f openshift/cd-service.yaml'
+                }
+              }
+            }
+            stage("Create Public route") {
+              steps {
+                dir('cds') {
+                  sh '((oc get route | grep cds) && echo "cds already exposed") || oc expose svc/cds'
+                  sh 'echo "Internet route is `oc get route | awk \'{print $2}\' | grep cds`"'
+                }
+              }
+            }
+            stage("Clean up on Isle 4") {
+              steps {
+                dir('cds') {
+                  sh 'oc delete pods `oc get pods | grep \'0/1\' | awk \'{print $1}\'`'
+                }
+              }
+            }
+          }
+        }
+    type: JenkinsPipeline
+  triggers: []
