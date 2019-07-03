@@ -37,6 +37,6 @@ spec:
       - cd-server
       from:
         kind: ImageStreamTag
-        name: cd:1.0.0
+        name: cd:latest
     type: ImageChange
 status: {}

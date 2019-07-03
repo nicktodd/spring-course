@@ -50,6 +50,6 @@ spec:
       - mysql
       from:
         kind: ImageStreamTag
-        name: mysql:1.0.0
+        name: mysql:latest
     type: ImageChange
 status: {}
