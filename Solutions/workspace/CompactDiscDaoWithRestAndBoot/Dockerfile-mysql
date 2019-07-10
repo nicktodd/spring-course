@@ -2,4 +2,4 @@ FROM mysql:5.7.19
 EXPOSE 3306
 ENV MYSQL_ROOT_PASSWORD=c0nygre1
 # THIS LINE NEEDS TO BE COMMENTED OUT WHEN USING OpenShift since the SQL file is added to the persistent volume
-#ADD  sql/createTables.sql /docker-entrypoint-initdb.d
+ADD  sql/createTables.sql /docker-entrypoint-initdb.d
