@@ -45,7 +45,7 @@ spec:
                 stage("Create Build For Database Server") {
                   steps {
                     dir('cds/Solutions/workspace/CompactDiscDaoWithRestAndBoot') {
-                      sh 'oc new-build --strategy docker --binary --name jenkinscds/mysql || echo "Build already exists"'
+                      sh 'oc new-build --strategy docker --binary --name mysql || echo "Build already exists"'
                     }
                   }
                 }
