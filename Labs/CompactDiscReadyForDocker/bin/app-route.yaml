@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Route
+metadata:
+  name: cds
+spec:
+  host: DNSNAME
+  port:
+    targetPort: 'PORTNUMBER'
+  to:
+    kind: Service
+    name: cds

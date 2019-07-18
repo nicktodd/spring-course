@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of CDs</title>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+
+
+    <link href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+
+
+        $(document).ready(function() {
+            //addCD();
+           //sendRequestJQuery();
+            //sendRequest();
+        })
+
+        function addCD() {
+            $.ajax({
+                    type: "POST",
+                    url: "api/compactdiscs",
+                    headers: {"Content-Type": "application/json"},
+                    dataType: "json",
+                    error: function (xhr, status, error) {
+                        alert("Error:-" + error);
+                    },
+                    data: '{"title":"Is This It2","artist":"The Strokes2","price":13.99,"tracks":11}',   success: function (json) {
+
+                    }
+                }
+            );
+        }
+        function sendRequestJQuery() {
+
+            $.ajax({
+                    type: "GET",
+                    url: "api/compactdiscs",
+
+                    dataType: "json",
+                    error: function (xhr, status, error) {
+                        alert("Error:-" + error);
+                    },
+                    success: function (json) {
+                         console.log(json);
+                        var listOutput = "<ul>";
+                        $.each(json.compactDiscList, function(compactDiscList, cd) {
+                            listOutput += "<li> " + cd.title + "</li>";
+
+                        } );
+                        listOutput += "</ul>";
+                        $("#cdTitle").html(listOutput).css("background","red");
+
+
+                    }
+                }
+            );
+        }
+
+
+        function sendRequest() {
+
+            var request = new XMLHttpRequest();
+
+
+            request.onreadystatechange = function () {
+                if (request.readyState == 4) {
+                    var cdList = JSON.parse(request.responseText);
+
+                    var listOutput = "<ul>";
+                    for(var i=0; i<cdList.compactDiscList.length; i++) {
+                        listOutput += "<li> " + cdList.compactDiscList[i].title + "</li>";
+                    }
+                    listOutput += "</ul>";
+                    $("#cdTitle").html(listOutput).css("background","red");
+
+                }
+            };
+            request.open("GET", "api/compactdiscs", true);
+            request.send(null);
+
+        }
+
+
+
+        $(document).ready(function() {
+            $('#cdsTable').DataTable( {
+                "ajax": 'api/compactdiscs',
+                "dataSrc": 'compactDiscList',
+                "sAjaxDataProp":"compactDiscList",
+                columns: [
+                    { data: 'id' },
+                    { data: 'title' },
+                    { data: 'artist' },
+                    { data: 'price' },
+                    { data: 'tracks' }
+
+                ]
+            } );
+        } );
+
+
+
+    </script>
+
+
+</head>
+<body>
+
+<div id="cdTitle">
+
+
+</div>
+<table id="cdsTable" class="display" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Artist</th>
+        <th>Price</th>
+        <th>Tracks</th>
+
+    </tr>
+    </thead>
+</table>
+
+
+</body>
+</html>

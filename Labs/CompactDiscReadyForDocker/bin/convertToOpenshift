@@ -1,0 +1,53 @@
+#!/bin/bash
+
+DOCKERREG=dockerreg.conygre.com
+DNSNAME=cds.appsrvdev.conygre.com
+PORTNUMBER=8080
+
+# Check we are in the directory where docker-compose.yaml is
+if [[ ! -e docker-compose.yaml ]]
+then
+	echo "Please run this command from the directory where your docker-compose.yaml"
+	exit 1
+fi
+
+# Convert docker to openshift
+if [[ ! -d openshiftnew ]]
+then
+	mkdir openshiftnew
+fi
+cd openshiftnew
+kompose convert -f ../docker-compose.yaml --provider=openshift
+
+# Set the Docker registry location
+if [[ -z $DOCKERREG ]]
+then
+	echo -n "Please enter the private IP address of your Docker registry: "
+	read DOCKERREG
+fi
+for line in *.yaml
+do
+	sed -i -e "s,name: cd/\\(.*\\):,name: ${DOCKERREG}:5000/cd/\\1:," \
+	       -e "s,importPolicy: {},importPolicy:\n       insecure: true," \
+	       $line
+done
+
+# Add the route for the application
+if [[ -z $DNSNAME ]]
+then
+	echo -n "Please enter the DNS name for your application: "
+	read DNSNAME
+fi
+
+if [[ -z $PORTNUMBER ]]
+then
+	echo -n "Please enter the exposed port number for your application: "
+	read PORTNUMBER
+fi
+
+sed -e "s/DNSNAME/${DNSNAME}/" -e "s/PORTNUMBER/${PORTNUMBER}/" ../bin/app-route.yaml >app-route.yaml
+
+# To import into OC
+#oc apply -f <list of the yaml files>
+# The below automates the list to comma separated as required by the command
+oc apply -f `echo * | sed 's/ /,/g'`

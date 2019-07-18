@@ -1,0 +1,26 @@
+#!/bin/bash
+
+if (( $# < 4 ))
+then
+	echo "SYNTAX: $0 <projectname> <username> <password> <openshiftservernameorip>" 1>&2
+	exit 1
+fi
+
+if [[ ! -e jenkins-pipeline.yml ]]
+then
+	echo "Please run this command from the directory containing the jenkins-pipeline.yml file" 1>&2
+	exit 1
+fi
+
+# Create new openshift application
+if oc login -u $2 -p $3 https://$4:8443
+then
+	if oc new-project $1
+	then
+		oc create -f jenkins-pipeline.yml
+	else
+		echo "Unable to create project $1"
+	fi
+else
+	echo "Unable to log into https://$4:8443 as $2 using password $3"
+fi
