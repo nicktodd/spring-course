@@ -3,6 +3,7 @@ package com.conygre.spring.boot.rest;
 import com.conygre.spring.boot.AppConfig;
 import com.conygre.spring.boot.entities.CompactDisc;
 import com.conygre.spring.boot.services.CompactDiscService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +18,16 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -44,12 +47,13 @@ public class TestCompactDiscController {
     @MockBean
     private CompactDiscService service;
 
+    @Autowired
+    private ObjectMapper mapper;
 
     @Test
-    public void testThatCanConnect() throws Exception {
+    public void testCanRetrieveAllCDs() throws Exception {
 
         CompactDisc disc = new CompactDisc("Abba Gold", 1, "Abba", 10);
-
         List<CompactDisc> allDiscs = Arrays.asList(disc);
 
         given(service.getCatalog()).willReturn(allDiscs);
@@ -58,9 +62,20 @@ public class TestCompactDiscController {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].title", is("Abba Gold")));
-
     }
 
+
+    @Test
+    public void testCanAddCD() throws Exception {
+
+        CompactDisc disc = new CompactDisc("Abba Gold", 1, "Abba", 10);
+        mockMvc.perform(post("/api/compactdiscs")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(mapper.writeValueAsString(disc)))
+                .andExpect(status().isOk());
+        verify(service).addNewCompactDisc(any(CompactDisc.class));
+
+    }
 
 
 }
