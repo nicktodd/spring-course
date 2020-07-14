@@ -14,6 +14,11 @@ public class Person {
     @Autowired
     private Pet pet;
 
+    public Person(Pet p) {
+        this.pet = p;
+    }
+    public Person(){}
+
 
     public int getAge() {
         return age;

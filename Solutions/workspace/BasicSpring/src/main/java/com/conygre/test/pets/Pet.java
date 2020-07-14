@@ -5,5 +5,5 @@ package com.conygre.test.pets;
  */
 public interface Pet {
 
-    void stroke();
+    void feed();
 }
