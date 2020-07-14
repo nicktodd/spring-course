@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ThalesSpringTest",
+            "request": "launch",
+            "mainClass": "ThalesSpringTest",
+            "projectName": "basicspring"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TestPersonWithConfigurer",
+            "request": "launch",
+            "mainClass": "TestPersonWithConfigurer",
+            "projectName": "basicspring"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - TestPerson",
+            "request": "launch",
+            "mainClass": "TestPerson",
+            "projectName": "basicspring"
+        }
+    ]
+}
