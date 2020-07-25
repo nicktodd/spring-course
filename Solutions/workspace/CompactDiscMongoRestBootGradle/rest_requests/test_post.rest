@@ -1,0 +1,10 @@
+POST http://localhost:8080/api/compactdiscs HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Greatest Hits",
+    "artist": "Whitney Houston",
+    "price": 2.99,
+    "tracks": 9
+
+}

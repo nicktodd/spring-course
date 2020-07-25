@@ -7,15 +7,15 @@ import com.conygre.spring.service.CompactDiscService;
 
 public class TestSpringJpa {
 
-	public static void main(String[] args) {
-		
-		ApplicationContext context =
-				new  AnnotationConfigApplicationContext(AppConfig.class);
-		CompactDiscService service = context.getBean(CompactDiscService.class);
-		
-		service.getCatalog().forEach(c -> System.out.println(c.getTitle()));
-		
-		
-	}
+    public static void main(String[] args) {
+
+        ApplicationContext context =
+                new  AnnotationConfigApplicationContext(AppConfig.class);
+        CompactDiscService service = context.getBean(CompactDiscService.class);
+
+        service.getCatalog().forEach(c -> System.out.println(c.getTitle()));
+
+
+    }
 
 }
