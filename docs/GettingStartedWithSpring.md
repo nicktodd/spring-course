@@ -19,19 +19,6 @@ In this exercise, you will create a basic Spring application that uses a simple 
 2.	In that class, add the annotation @Configuration to make it a configuration class.
 3.	Now add in a method to configure a new Cat. The method must be annotated @Bean and simply needs to return a new Cat object. The return type must be Pet.
 
-
- 
-
-
-You will learn:
-
-1. What is Java
-
-
-Here is some Java
-
-```public class HelloWorld```
-
 @Bean
 public Pet pet() {
   return new Cat();
