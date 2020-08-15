@@ -19,25 +19,25 @@ In this exercise, you will create a basic Spring application that uses a simple 
 2.	In that class, add the annotation @Configuration to make it a configuration class.
 3.	Now add in a method to configure a new Cat. The method must be annotated @Bean and simply needs to return a new Cat object. The return type must be Pet.
 
-@Bean
-public Pet pet() {
-  return new Cat();
-}
-4.	Now add a method to configure the Person. This method is also annotated using @Bean, but this time, return a new Person that uses an injected Pet as a constructor parameter.
+  @Bean
+  public Pet pet() {
+    return new Cat();
+  }
 
-@Bean
-public Person person(@Autowired Pet pet) {
-    return new Person(pet);
-}
+4. Now add a method to configure the Person. This method is also annotated using @Bean, but this time, return a new Person that uses an injected Pet as a constructor parameter.
+
+   @Bean
+   public Person person(@Autowired Pet pet) {
+       return new Person(pet);
+   }
 
 
+5.	Review the code and make sure that you understand what you have done.
 
-
-5.	### Review the code and make sure that you understand what you have done.
 Now we will create a test class that will be used to load the config file, load up the context, and then we will be able to access our beans,
 
-6.	### Open the provided class in the default package called * **PersonTest**.
-7.	### It has an empty main() method. Within main() add a line to create the context. It will look something like the below. Note you will also need to add the necessary import statements.
+6.	Open the provided class in the default package called * **PersonTest**.
+7.	It has an empty main() method. Within main() add a line to create the context. It will look something like the below. Note you will also need to add the necessary import statements.
 
 ApplicationContext context = new  AnnotationConfigApplicationContext(PersonConfigurer.class);
 
