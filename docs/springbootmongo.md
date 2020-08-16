@@ -7,6 +7,7 @@ much of the technology you have covered in the previous chapters, but with much 
 1.	Create a new Maven project with an artifact ID MySpringBoot and a group ID of com.conygre.spring.boot.
 2.	Add the following to your pom file after the version element:
 
+```
 <properties>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -49,34 +50,29 @@ much of the technology you have covered in the previous chapters, but with much 
 	<build>
 		<plugins>
 			<plugin>
-<groupId>org.springframework.boot</groupId>
+				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
-
+```
 
 
 
 ## Part 2 Create and Include the Required Classes
-1.	Begin by copying the CompactDisc entity class into your project.
+1.	Begin by copying the `CompactDisc` entity class into your project.
 2.	Copy in your Spring Data Repository interface from the Spring Data exercise.
-3.	Copy over your CompactDiscService class from your Spring Data exercise, and define an interface for it.
+3.	Copy over your `CompactDiscService` class from your Spring Data exercise, and define an interface for it.
 4.	Copy over your REST API controller class.
-5.	Finally, create an application class called com.conygre.training.MongoJavaConfig and annotate it with the following Spring Boot annotations:
+5.	Finally, create an application class called `com.conygre.training.MongoJavaConfig` and annotate it with the following Spring Boot annotations:
  
- @Configuration
-@EnableAutoConfiguration
-@ComponentScan
+ ```
+@SpringBootApplication
 @EnableMongoRepositories(basePackages = "com.conygre.training.data")
+```
 
-@Configuration
-@EnableAutoConfiguration
-@ComponentScan
-@EnableMongoRepositories(basePackages = "com.conygre.training.data")
-
-6.	Add a main method to the class and in main, run the SpringApplication.run(MongoJavaConfig.class, args) method.
-7.	That’s now completed the application, so make sure that any Tomcat servers are no longer running, and then run the MongoJavaConfig class.
+6.	Add a `main` method to the class and in main, run the `SpringApplication.run(MongoJavaConfig.class, args)` method.
+7.	That’s now completed the application, so make sure that any Tomcat servers are no longer running, and then run the `MongoJavaConfig` class.
 8.	Visit your new REST API in the browser and it will return your compact discs. The entire REST API should be working. 
 9.	If you have not completed all of the CRUD methods you could complete them now. Remember to restart the Spring Boot application each time you change any settings.
 

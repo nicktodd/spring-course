@@ -1,9 +1,10 @@
-# Working with MongoDB and Spring
+# Working with MongoDB and Spring using Maven and Eclipse
 
 ## Aims
 In this exercise, you will create a Spring application that uses MongoDB as the database for a service layer.
 
 ## Part 1: Configuring the Project
+
 1.	In the **Project Explorer**, right click and then click **New** and then click Other.
 2.	At the **New** dialog, expand **Maven** and then select ** Maven Project**. Click **Next**.
 3.	At the New Maven Project dialog, select Create a simple project, and click **Next**.
