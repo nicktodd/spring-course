@@ -6,7 +6,7 @@ Core Spring - Lab to follow
 
 [Working with Spring and MongoDB](WorkingWithMongodbGradle.md)
 
-[Working with Spring Data and MongoDB](springdatawithmongogradle.md)
+[Working with Spring Data and MongoDB](Springdatawithmongogradle.md)
 
 [Spring Boot with Mongo, REST API and Gradle](springbootmongorestgradle.md)
 
