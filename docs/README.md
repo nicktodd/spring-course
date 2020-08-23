@@ -2,7 +2,7 @@
 
 # Exercises for the Spring with Mongo DB Training
 
-Core Spring - Lab to follow
+[Core Spring](GettingStartedWithSpring.md)
 
 [Working with Spring and MongoDB](WorkingWithMongodbGradle.md)
 
