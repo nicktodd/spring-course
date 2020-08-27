@@ -44,13 +44,13 @@ compile group: 'org.springframework.data', name: 'spring-data-mongodb', version:
  
  
 3.	Add the following properties along with the get/set methods.
+
 | Property | Type |
 | -- | -- |
 | id	| ObjectId |
-| title|	String |
-| artist |	String |
-| price |	double |
-
+| title| String |
+| artist | String |
+| price | double |
 
 4.	Add the annotation to specify that the class is a @Document.
 5.	Finally, add a constructor to allow you to create a CompactDisc with a title, artist, and price (no ID), and then add a default no argument constructor.
