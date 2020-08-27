@@ -46,10 +46,10 @@ compile group: 'org.springframework.data', name: 'spring-data-mongodb', version:
 3.	Add the following properties along with the get/set methods.
 | Property | Type |
 | -- | -- |
-|id	|ObjectId|
-|title|	String|
-|artist|	String|
-|price|	double|
+| id	| ObjectId |
+| title|	String |
+| artist |	String |
+| price |	double |
 
 
 4.	Add the annotation to specify that the class is a @Document.
