@@ -37,6 +37,41 @@ compile group: 'org.springframework.data', name: 'spring-data-mongodb', version:
     testCompile group: 'org.springframework', name: 'spring-test', version:'4.1.7.RELEASE'
 ``` 
 
+## Create a Document Class
+1.	In the Visual Studio file explorer, expand src/main/java and then right click on the spring directory and choose New Folder, and call the new folder entities.
+2.	In the new folder, create a new file called CompactDisc.java.
+
+ 
+ 
+3.	Add the following properties along with the get/set methods.
+
+id	ObjectId
+title	String
+artist	String
+price	double
+
+
+4.	Add the annotation to specify that the class is a @Document.
+5.	Finally, add a constructor to allow you to create a CompactDisc with a title, artist, and price (no ID), and then add a default no argument constructor.
+
+## Setting up the Java Configuration
+Initially, you will use the MongoTemplate, so a configuration file will be required.
+
+1.	In your src/main/java/com/conygre/spring folder, create a new Java class called MongoJavaConfig.
+2.	Annotate the class with @Configuration, and then ensure that the class extends AbstractMongoConfiguration.
+3.	Add the following required methods:
+
+```
+@Override
+protected String getDatabaseName() {
+  return "mydatabase";
+}
+
+@Override
+public Mongo mongo() throws Exception {
+  return new MongoClient("127.0.0.1", 27017);
+}  
+```
 ## Part 2 Create a Test Class
 1.	In the file explorer pane, expand `src/test/java` and within it create a new test class called `com.conygre.mongo.BasicMongoTest`.
 2.	Annotate the class with the `@RunWith(SpringJUnit4ClassRunner.class`.
