@@ -4,7 +4,7 @@
 In this exercise, you will create a Spring application that uses MongoDB as the database for a service layer.
 
 ## Part 1: Configuring the Project
-1.	Open a **Command Prompt** in the `<LAB_HOME>\labs\MongoDBSpring` directory.
+1.	Open a **Command Prompt** in the `<LAB_HOME>\labs\MongoDBSpring` directory. You will need to create the folder first.
 
 2.	At the terminal, run the command `gradle init`.
 
