@@ -2,6 +2,7 @@ package com.conygre.spring.entities;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -12,6 +13,13 @@ public class CompactDisc {
     private String title;
     private String artist;
     private double price;
+
+    // added this to make it easier for client to access the ID in a format that is easy for deletes and get by id
+    // an alternative approach is to create a Data Transfer Object which would be passed back and forth to clients
+    public String getHexString() {
+        return id.toHexString();
+    }
+
 
     public CompactDisc(String title, String artist, double price) {
         this.title = title;

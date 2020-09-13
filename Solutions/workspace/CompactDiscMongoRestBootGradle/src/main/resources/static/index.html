@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <script>
+
+        async function deleteById(id) {
+            
+            await fetch("api/compactdiscs/" + id, {
+                method: "DELETE"
+            });
+            await getAll();
+            //alert("deleted number " + id);
+        }
+
+    function getAll() {
+       // done using promise using then function syntax
+        fetch('api/compactdiscs').then(function(result) {
+            return result.json();
+        }).then(function (cdList) {
+            let htmlString = "<table class='table table-striped'><thead><tr><th>Artist</th><th>Title</th></tr></thead>";
+            cdList.map((cd) => {
+                htmlString+="<tr>";
+                htmlString+="<td>"+ cd.artist + "</td>";
+                htmlString+="<td>"+ cd.title + "</td>";
+                htmlString+="<td><button class='btn btn-primary' onClick='deleteById(\"" + cd.hexString + "\")'>Delete</button></td>";
+
+                htmlString+="</tr>";
+            });
+            htmlString += "</table>";
+            document.getElementById("cdDiv").innerHTML = htmlString;
+        });
+    }
+    </script>
+</head>
+<body onLoad="getAll()">
+    <div class="container">
+        <h1>Album Catalog</h1>
+        <p>Here is my fantastic list of music albums</p>
+        <div id="cdDiv"></div>
+        <p>To add another fantastic album, click <a href="addAlbum.html">here</a>.</p>
+    </div>
+</body>
+</html>
