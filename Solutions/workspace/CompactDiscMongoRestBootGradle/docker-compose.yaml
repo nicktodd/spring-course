@@ -1,0 +1,22 @@
+version: '3.0'
+services:
+   mymongo:
+     container_name: mymongo
+     image: mongo
+     ports:
+       - "27017:27017"
+     restart: always
+     
+
+
+   cds:
+     container_name: cds
+     build:
+       context: .
+       dockerfile: Dockerfile
+     image: cd/cd-server:1.0.0
+     links:
+       - mymongo:mymongo
+     ports:
+       - "8080:8080"
+     restart: always
