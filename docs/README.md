@@ -1,6 +1,23 @@
-# spring-course
+# Spring Course Labs
 
-# Exercises for the Spring with Mongo DB Training
+# Exercises for the Spring with MySQL and Maven Pathway
+
+[JPA with Hibernate](jpa.md)
+
+[Going Further with JPA](further-jpa.md)
+
+[Core Spring](GettingStartedWithSpring.md)
+
+[Working with Spring and JPA](jpa.md)
+
+[Working with Spring Data and JPA](springdata-jpa.md)
+
+[Aspect Oriented Programming](aspects.md)
+
+[Spring Boot with JPA, REST API and Maven](springboot-jpa.md)
+
+
+# Exercises for the Spring with MongoDB and Gradle Pathway
 
 [Core Spring](GettingStartedWithSpring.md)
 
