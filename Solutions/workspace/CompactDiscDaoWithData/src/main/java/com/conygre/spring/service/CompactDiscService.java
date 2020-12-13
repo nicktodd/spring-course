@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
@@ -27,7 +28,7 @@ public class CompactDiscService {
 		return dao.findAll();
 	}
 
-	public CompactDisc getCompactDiscById(int id) {
+	public Optional<CompactDisc> getCompactDiscById(int id) {
 		return dao.findById(id);
 	}
 
