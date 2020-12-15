@@ -10,13 +10,13 @@ You will also use Java configuration to create this project.
 
 ## Create the new DAO
 
-1. In your preferred IDE, open the CompactDiscDAOJavaConfigStarter project and create a new Java class called com.conygre.training.dao.jpa.spring.SpringJPACompactDiscDAO that implements the CompactDiscDAO interface. Implement empty versions of the various methods.
+1. In your preferred IDE, open the `CompactDiscDAOJavaConfigStarter` project and create a new Java class called `com.conygre.training.dao.jpa.spring.SpringJPACompactDiscDAO` that implements the `CompactDiscDAO` interface. Implement empty versions of the various methods.
    
-2.	Declare a reference of type EntityManager with the name em.
+2.	Declare a reference of type `EntityManager` with the name `em`.
 
-3.	Annotate the reference as a @PersistenceContext. This will allow Spring to inject it.
+3.	Annotate the reference as a `@PersistenceContext`. This will allow Spring to inject it.
 
-4.	Within each method, use the injected EntityManager to carry out the required function. For example, the getAllDiscs() method is shown below:
+4.	Within each method, use the injected EntityManager to carry out the required function. For example, the `getAllDiscs()` method is shown below:
 
 ```
 	public Collection<CompactDisc> getAllDiscs() {
@@ -28,13 +28,13 @@ You will also use Java configuration to create this project.
 
 ## Configure the Required Beans in the Java configuration classes
 
-1.	Open com.conygre.spring.configuration.AppConfig.java and you will now be adding the following configuration annotations:
+1.	Open `com.conygre.spring.configuration.AppConfig.java` and you will now be adding the following configuration annotations:
 
-    1.	@Configuration which will make it a configuration class
-    2.	@Import(JpaConfiguration.class) which will cause it to import the JPA configuration class you will be completing next.
-    3.	@ComponentScan(basePackages=”com.conygre.spring”) which will cause it to scan in your DAO and Service beans.
+    1.	`@Configuration` which will make it a configuration class
+    2.	`@Import(JpaConfiguration.class)` which will cause it to import the JPA configuration class you will be completing next.
+    3.	`@ComponentScan(basePackages=”com.conygre.spring”)` which will cause it to scan in your DAO and Service beans.
 
-2.	Close AppConfig.java, and now open JpaConfiguration.java located in the same package.
+2.	Close `AppConfig.java`, and now open `JpaConfiguration.java` located in the same package.
 
 3.	Annotate the class with the following annotations:
 
@@ -44,14 +44,14 @@ You will also use Java configuration to create this project.
 @PropertySource(value = { "classpath:application.properties" })
 ```
 
-4.	Declare a private field of type Environment called environment, and mark it as autowired. This property will be set by reading in an application.properties file you will be creating later.
+4.	Declare a private field of type `Environment` called `environment`, and mark it as `@Autowired`. This property will be set by reading in an `application.properties` file you will be creating later.
 
 ```
 @Autowired
 private Environment environment;
 ```
 
-5.	Now create a method to return a VendorAdapter bean to configure that our JPA class will be using Hibernate as the JPA implementation.
+5.	Now create a method to return a `VendorAdapter` bean to configure that our JPA class will be using Hibernate as the JPA implementation.
 
 ```
     @Bean
@@ -62,7 +62,7 @@ private Environment environment;
 	}
 ```
 
-6.	Now declare an EntityManagerFactory method that the injected PersistenceContext will come from.
+6.	Now declare an `EntityManagerFactory` method that the injected `PersistenceContext` will come from.
 
 ```
     @Bean
@@ -79,7 +79,7 @@ new String[] { "com.conygre.spring.entities" });
 	}
 ```
 
-7.	Define a method to return a bean to represent the datasource (we will be removing that information from persistence.xml to make the application more realistic.
+7.	Define a method to return a bean to represent the `DataSource` (we will be removing that information from persistence.xml to make the application more realistic.
 
 ```
     @Bean
@@ -98,7 +98,7 @@ environment.getRequiredProperty("jdbc.password"));
 }
 ```
 
-8.	Add a method to return a properties object that can provide any additional JPA configuration.
+8.	Add a method to return a `Properties` object that can provide any additional JPA configuration.
 
 ```
 private Properties jpaProperties() {
@@ -110,7 +110,7 @@ private Properties jpaProperties() {
 	}
 ```
 
-9.	The final method enables transactions, so add a method to return a TransactionManager.
+9.	The final method enables transactions, so add a method to return a `TransactionManager`.
 
 ```
     @Bean
@@ -125,7 +125,7 @@ private Properties jpaProperties() {
 ## Adding the properties file
 You will need to add the properties file containing the database connection information. 
 
-1.	In src/main/resources, create a new file called application.properties.
+1.	In `src/main/resources`, create a new file called `application.properties`.
 
 2.	In the file, add the following properties:
 
@@ -144,22 +144,22 @@ hibernate.format_sql=true
 
 The code is largely complete now, but in order for the service bean to work, Spring needs to know where to start and end the transactions.
 
-Configuring Our Transactional Requirements
+### Configuring Our Transactional Requirements
 
-1.	Open the DAO class and add the required annotation to specify that all methods support a transaction.
+1.	Open the `CompactDiscDAOImpl` class and add the required annotation to specify that all methods support a transaction.
 
-2.	Open the CompactDiscService class and add an annotation to specify that all methods require a transaction.
+2.	Open the `CompactDiscService` class and add an annotation to specify that all methods require a transaction.
 
 
 ## Creating a Test Harness
 
-1.	Finally, open up TestSpringJpa.java which is in the default package, and then load up the Java configuration class using
+1.	Finally, open up `TestSpringJpa.java` which is in the default package, and then load up the Java configuration class using
 
 ```
 ApplicationContext context = new  AnnotationConfigApplicationContext(AppConfig.class);
 ```
 
-2.	Then from the context, obtain a reference to the service bean and then try calling the getCatalog() method to retrieve all of the CDs and iterate over them printing out the titles. 
+2.	Then from the `context`, obtain a reference to the service bean and then try calling the `getCatalog()` method to retrieve all of the CDs and iterate over them printing out the titles. 
 
 3.	Run this main method, and if you have done everything correctly, it will work!
 
