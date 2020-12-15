@@ -40,5 +40,5 @@ You will see from the console that when you ran the code an update was run again
 
 7.	After the code closing the entity manager, open a new entity manager and get a new transaction.
 
-8.	Now merge your modified CompactDisc object and close the new entity manager and transaction. See if the database has changed. You will now see that it has. This is because a detatched entity has become managed again.
+8.	Now merge your modified CompactDisc object and close the new entity manager and transaction. See if the database has changed. You will now see that it has. This is because a detatched entity has had its properties copied into a managed version of the entity.
 
