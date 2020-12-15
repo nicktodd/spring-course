@@ -43,7 +43,7 @@ Now we will create a test class that will be used to load the config file, load 
 7.	It has an empty `main()` method. Within `main()` add a line to create the context. It will look something like the below. Note you will also need to add the necessary import statements.
 
 ```
-ApplicationContext context = new  AnnotationConfigApplicationContext(PersonConfigurer.class);
+ApplicationContext context = new  AnnotationConfigApplicationContext(PersonConfiguration.class);
 ```
 
 8.	That line creates all of the beans, and you can now look them up from within the context. So now, use the context to get the `Person` bean that was configured earlier and then get the `Pet` and finally feed the `Pet`. This can be done in one line as shown below:
