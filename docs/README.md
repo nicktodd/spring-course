@@ -8,7 +8,7 @@
 
 [Core Spring](GettingStartedWithSpring.md)
 
-[Working with Spring and JPA](jpa.md)
+[Working with Spring and JPA](spring-jpa.md)
 
 [Working with Spring Data and JPA](springdata-jpa.md)
 
