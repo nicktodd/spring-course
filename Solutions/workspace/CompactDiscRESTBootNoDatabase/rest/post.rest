@@ -1,0 +1,11 @@
+POST http://localhost:8080/compactdiscs
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": "19",
+  "artist": "Adele",
+  "price": "12.99",
+  "tracks": "10"
+  }
+
