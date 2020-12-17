@@ -62,6 +62,7 @@ public interface CompactDiscService {
 
 
 @Service
+@Transactional
 public class CompactDiscServiceImpl implements CompactDiscService {
 	
 	@Autowired
