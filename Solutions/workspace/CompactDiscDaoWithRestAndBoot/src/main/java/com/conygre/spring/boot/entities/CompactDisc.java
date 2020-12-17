@@ -33,7 +33,7 @@ public class CompactDisc implements Serializable {
 	// add an attribute specifying a column for the id property
 	// add attributes to ensure that the id column is automantically generated
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
 
