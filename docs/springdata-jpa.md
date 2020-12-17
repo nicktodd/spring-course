@@ -14,7 +14,7 @@ We will migrate the previous exercise application that uses JPA to use Spring Da
 
 3.	Open the pom file and rename the artifact ID to CompactDiscDaoSpringData. 
 
-4.	Also in the pom file, replace the entire <dependencies> section with 
+4.	Also in the pom file, replace the entire &lt;dependencies&gt; section with 
 
 ```
 <dependencyManagement>
