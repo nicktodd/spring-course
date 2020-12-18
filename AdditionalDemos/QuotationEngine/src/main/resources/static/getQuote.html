@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Get Quote</title>
+    <script>
+        function getQuote(event) {
+            event.preventDefault();
+            let requestObject = {
+                firstName: event.target.firstName.value,
+                lastName: event.target.lastName.value
+            };
+            fetch("/quotes", {
+                method: "POST",
+                headers :{
+                    'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify(requestObject)
+            }).then(function(response) {
+                response.json().then(function (quote) {
+                    document.getElementById("quoteDiv").innerHTML = "Your quote is " + quote.quote;
+                })
+            });
+        }
+    </script>
+
+</head>
+<body>
+
+<h1>Get Quotation</h1>
+
+<form id="quoteForm">
+    First Name: <input type="text" name="firstName"/>
+    <br/>Last Name: <input type="text" name="lastName"/>
+
+    <br/><input  type="submit"/>
+
+</form>
+<hr/>
+<div id="quoteDiv">
+    Your quote will appear here
+</div>
+
+<script>
+    document.getElementById("quoteForm").addEventListener("submit", getQuote);
+</script>
+
+</body>
+</html>

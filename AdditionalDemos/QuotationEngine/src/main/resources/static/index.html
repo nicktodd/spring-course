@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+
+        async function populateTable() {
+
+            let htmlString = "";
+            fetch('quotes').then(function(result) {
+                return result.json();
+            }).then(function (quotes) {
+                htmlString = "<table class='table table-striped'><thead><tr><th>Id</th><th>FirstName</th><th>LastName</th><th>Quote</th></tr></thead>";
+                quotes.map((quote) => {
+                    console.log("Processing a quote" + quote.firstName);
+                    htmlString+="<tr>";
+                    htmlString+="<td>"+ quote.id + "</td>";
+                    htmlString+="<td>"+ quote.firstName + "</td>";
+                    htmlString+="<td>"+ quote.lastName + "</td>";
+                    htmlString+="<td>"+ quote.quote + "</td>";
+                    htmlString+="</tr>";
+                });
+                htmlString += "</table>";
+                document.getElementById("content").innerHTML = htmlString;
+            });
+
+
+
+
+
+        }
+
+    </script>
+
+
+    <meta charset="UTF-8">
+    <title>Quotation Service</title>
+</head>
+<body onLoad="populateTable()">
+<h1>Below is a list of Quotations</h1>
+
+<div id="content">
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+POST http://localhost:8080/quotes
+Content-Type: application/json
+
+{
+"firstName" : "Fred",
+  "lastName" : "Flintstone"
+}
+
+###
