@@ -1,4 +1,5 @@
 FROM mysql:5.7.19
+#FROM mysql:8.0.23
 EXPOSE 3306
 ENV MYSQL_ROOT_PASSWORD=c0nygre1
 ADD  sql/createTables.sql /docker-entrypoint-initdb.d

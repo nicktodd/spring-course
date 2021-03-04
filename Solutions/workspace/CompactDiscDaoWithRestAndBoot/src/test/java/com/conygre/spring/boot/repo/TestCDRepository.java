@@ -2,7 +2,10 @@ package com.conygre.spring.boot.repo;
 
 import com.conygre.spring.boot.repos.CompactDiscRepository;
 import com.conygre.spring.boot.entities.CompactDisc;
+import com.conygre.spring.boot.rest.CompactDiscController;
 import com.conygre.spring.boot.services.CompactDiscService;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -32,39 +41,41 @@ public class TestCDRepository {
     @Autowired
     CompactDiscService discService;
 
-    @Test
-    public void canRetrieveCDByArtist() {
-        CompactDisc disc = new CompactDisc("Abba Gold", 12.99, "Abba", 5);
-        //disc.setId(1);
-        manager.persist(disc);
 
-        Iterable<CompactDisc> discs = repo.findByArtist("Abba");
-        boolean result = false;
-        for (CompactDisc current : discs) {
-            if (current.getArtist().equals("Abba")) {
-                result = true;
-                break;
-            }
-        }
-        assertTrue(result);
+    @Autowired
+    CompactDiscController controller;
+
+    @Before
+    public  void setupDatabaseEntryForReadOnlyTests() {
+        CompactDisc disc = new CompactDisc("Abba Gold", 12.99, "Abba", 5);
+        manager.persist(disc);
     }
 
 
+
+    // unit test the repo using a mock database
+    @Test
+    public void canRetrieveCDByArtist() {
+        Iterable<CompactDisc> discs = repo.findByArtist("Abba");
+        Stream<CompactDisc> stream = StreamSupport.stream(discs.spliterator(), false);
+        assertThat(stream.count(), equalTo(1L));
+    }
+
+
+    // integration test for the service layer and data layer
     @Test
     public void compactDiscServiceCanReturnACatalog() {
-        CompactDisc disc = new CompactDisc("Abba Gold", 12.99, "Abba", 5);
-        //disc.setId(1);
-        manager.persist(disc);
         Iterable<CompactDisc> discs = discService.getCatalog();
-        boolean result = false;
-        for (CompactDisc current : discs) {
-            if (current.getArtist().equals("Abba")) {
-                result = true;
-                break;
-            }
-        }
-        assertTrue(result);
+        Stream<CompactDisc> stream = StreamSupport.stream(discs.spliterator(), false);
+        Optional<CompactDisc> firstDisc = stream.findFirst();
+        assertThat(firstDisc.get().getArtist(), equalTo("Abba"));
+    }
 
+    // integration test with the controller
+    @Test
+    public void controllerCanReturnCDById() {
+        CompactDisc cd = controller.getCdById(1);
+        assertThat(cd.getArtist(), equalTo("Abba"));
     }
 
 }
