@@ -83,3 +83,8 @@ nb-configuration.xml
 ##############################
 .DS_Store
 Solutions/workspace/CompactDiscDaoWithRestAndBoot/.factorypath
+
+*.log.*
+*.log
+Solutions/workspace/CompactDiscDaoWithRestAndBoot/myapplication.log
+Solutions/workspace/CompactDiscDaoWithRestAndBoot/myapplication.log

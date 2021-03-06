@@ -57,7 +57,7 @@ In this exercise you will see how easy it is to build a complete end to end appl
 
 ```
 public interface CompactDiscService {
-	Iterable<CompactDisc> getCatalog();
+	List<CompactDisc> getCatalog();
 }
 
 
