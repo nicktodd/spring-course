@@ -125,7 +125,7 @@ private Properties jpaProperties() {
 ## Adding the properties file
 You will need to add the properties file containing the database connection information. 
 
-1.	In `src/main/resources`, create a new file called `application.properties`.
+1.	In `src/main/resources`, create a new file called `application.properties`. If the resources folder is not there, simply create it using Windows explorer or Finder, or through your IDE. It is just a normal folder.
 
 2.	In the file, add the following properties:
 
