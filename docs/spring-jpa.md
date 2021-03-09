@@ -10,7 +10,7 @@ You will also use Java configuration to create this project.
 
 ## Create the new DAO
 
-1. In your preferred IDE, open the `CompactDiscDAOJavaConfigStarter` project and create a new Java class called `com.conygre.training.dao.jpa.spring.SpringJPACompactDiscDAO` that implements the `CompactDiscDAO` interface. Implement empty versions of the various methods.
+1. In your preferred IDE, open the `CompactDiscDAOWithJPAStarter` project and create a new Java class called `com.conygre.training.dao.jpa.spring.SpringJPACompactDiscDAO` that implements the `CompactDiscDAO` interface. Implement empty versions of the various methods.
    
 2.	Declare a reference of type `EntityManager` with the name `em`.
 
