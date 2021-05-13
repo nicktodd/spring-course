@@ -32,11 +32,5 @@ public class CompactDiscService {
 		return dao.findById(id);
 	}
 
-	private static Collection<CompactDisc> makeCollection(Iterable<CompactDisc> iter) {
-		Collection<CompactDisc> list = new ArrayList<>();
-		for (CompactDisc item : iter) {
-			list.add(item);
-		}
-		return list;
-	}
+
 }

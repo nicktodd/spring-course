@@ -14,13 +14,10 @@ import com.conygre.spring.entities.CompactDisc;
 public interface CompactDiscRepository extends JpaRepository<CompactDisc, Integer> {
 
 	 @Query("SELECT p FROM CompactDisc p WHERE LOWER(p.title) = LOWER(:title)")
-	 public List<CompactDisc> find(@Param("title") String title);
+	 public List<CompactDisc> findByTitleButIgnoreTheCase(@Param("title") String title);
 	
-	
+	Collection<CompactDisc> findByTitle(String title);
 	
     Collection<CompactDisc> findByArtist(String artist);
-
-
-
 
 }
