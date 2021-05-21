@@ -103,9 +103,7 @@ public void testCdById() {
 
 10. Run this test in the same way that you ran the previous test.
 
-11. Unfortunately, the configuration class will interfere with our later tests, so add the @Ignore to the top of each your tests, and then comment out the @TestConfiguration annotation on the config class.
-
-
+11. Unfortunately, the configuration class will interfere with our later tests, so add the @Ignore to the top of each your tests, and then comment out the three `@Bean` and `@Primary` annotations in the config class.
 
 
 ## Part 2: Add some Integration Tests
