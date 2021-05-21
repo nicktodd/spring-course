@@ -16,6 +16,8 @@
 
 [Spring Boot with JPA, REST API and Maven](springboot-jpa.md)
 
+[Testing your Spring Boot Application](AddingSomeTests.md)
+
 
 # Exercises for the Spring with MongoDB and Gradle Pathway
 

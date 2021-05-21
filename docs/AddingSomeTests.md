@@ -103,6 +103,10 @@ public void testCdById() {
 
 10. Run this test in the same way that you ran the previous test.
 
+11. Unfortunately, the configuration class will interfere with our later tests, so add the @Ignore to the top of each your tests, and then comment out the @TestConfiguration annotation on the config class.
+
+
+
 
 ## Part 2: Add some Integration Tests
 
@@ -110,17 +114,28 @@ Now we will test our service and repo layer integration. Does the service layer 
 
 1. Create another test class called `com.conygre.spring.boot.repo.TestCDRepository`.
 
-2. Add the following code:
+2. Add the following code annotations at the top of the class:
 
 ```
 @RunWith(SpringRunner.class)
 @DataJpaTest // use an in memory database
 @SpringBootTest(classes={com.conygre.spring.boot.AppConfig.class})
 @TestPropertySource(locations = "classpath:application-test.properties") // this is only needed because swagger breaks tests
-public class TestCDRepository {
 
+```
+
+These annotations will set up an in memory database since we don't want to test with the actual database - remember we are only testing the integration between the two classes. We then specify the config class which is our spring boot application config, and the finally we specify an alternative application.properties files to use. This is stop swagger breaking our tests!
+
+3. Now we can inject a special three beans into our test:
+   1. A spring class called a TestEntityManager. We need this to put some test data into our project.
+   2. The CompactDiscRepository so we can test it works with the service layer
+   3. The CompactDiscService object which will have the repository injected which will in turn use the in memory database
+   4. The CompactDiscController. We can also test this class if we want to.
+
+```
     @Autowired
     private TestEntityManager manager;
+
 
     @Autowired // this is a mock which is injected because of the @DataJpaTest
     private CompactDiscRepository repo;
@@ -131,94 +146,93 @@ public class TestCDRepository {
 
     @Autowired
     CompactDiscController controller;
+```
 
-    private int discId;
+4. To set up the database for our tests, we can use an @Before method which will insert a row into our in memory database. The returned primary key we can then put into a variable so it can be checked by our tests when retrieving by ID.
 
-    @Before
-    public  void setupDatabaseEntryForReadOnlyTests() {
-        CompactDisc disc = new CompactDisc("Abba Gold", 12.99, "Abba", 5);
-        CompactDisc result = manager.persist(disc);
-        discId = result.getId();
+```
+private int discId;
 
-    }
-
-
-
-    // unit test the repo using a mock database
-    @Test
-    public void canRetrieveCDByArtist() {
-        Iterable<CompactDisc> discs = repo.findByArtist("Abba");
-        Stream<CompactDisc> stream = StreamSupport.stream(discs.spliterator(), false);
-        assertThat(stream.count(), equalTo(1L));
-    }
-
-
-    // integration test for the service layer and data layer
-    @Test
-    public void compactDiscServiceCanReturnACatalog() {
-        Iterable<CompactDisc> discs = discService.getCatalog();
-        Stream<CompactDisc> stream = StreamSupport.stream(discs.spliterator(), false);
-        Optional<CompactDisc> firstDisc = stream.findFirst();
-        assertThat(firstDisc.get().getArtist(), equalTo("Abba"));
-    }
-
-    // integration test with the controller
-    @Test
-    public void controllerCanReturnCDById() {
-        CompactDisc cd = controller.getCdById(discId);
-        assertThat(cd.getArtist(), equalTo("Abba"));
-    }
+@Before
+public  void setupDatabaseEntryForReadOnlyTests() {
+    CompactDisc disc = new CompactDisc("Abba Gold", 12.99, "Abba", 5);
+    CompactDisc result = manager.persist(disc);
+    discId = result.getId();
 
 }
 ```
 
-3. Run the tests and see if you can understand the various sections and tests.
+You are now able to add your tests, as you add each test, ensure that it passes before moving on.
 
-## Part 3: Create a Functional Test
+5. Now everything is set, and we can now test our application. First, let's test that our service layer can successfully retrieve a CompactDisc by ID.
 
-Finally create a functional test using RestTemplate.
+```
+@Test
+public void canRetrieveCDByArtist() {
+    Iterable<CompactDisc> discs = repo.findByArtist("Abba");
+    Stream<CompactDisc> stream = StreamSupport.stream(discs.spliterator(), false);
+    assertThat(stream.count(), equalTo(1L));
+}
+```
+
+6. Now let's test that we can retrieve all of the CDs from the database:
+
+```
+@Test
+public void compactDiscServiceCanReturnACatalog() {
+    Iterable<CompactDisc> discs = discService.getCatalog();
+    Stream<CompactDisc> stream = StreamSupport.stream(discs.spliterator(), false);
+    Optional<CompactDisc> firstDisc = stream.findFirst();
+    assertThat(firstDisc.get().getArtist(), equalTo("Abba"));
+}
+```
+
+7. Finally, let's see if the controller is successfully interacting with the service layer.
+
+```
+@Test
+public void controllerCanReturnCDById() {
+    CompactDisc cd = controller.getCdById(discId);
+    assertThat(cd.getArtist(), equalTo("Abba"));
+}
+```
+
+
+## Part 3: Create some Functional Tests
+
+Finally let's create some functional test using RestTemplate.
 
 1. Create a class called `functional.tests.CompactDiscRestTests` and add the following code:
 
 ```
-package functional.tests;
 
+2. Within the class, instantiate a property of type `RestTemplate`.
 
-import com.conygre.spring.boot.entities.CompactDisc;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.assertThat;
-
-public class CompactDiscRestTests {
-
-    private RestTemplate template = new RestTemplate();
-
-    @Ignore
-    @Test
-    public void testFindAll() {
-        List<CompactDisc> cds = template.getForObject("http://localhost:8080/api/compactdiscs", List.class);
-        assertThat(cds.size(),  greaterThan(1));
-    }
-
-    @Ignore
-    @Test
-    public void testCdById() {
-        CompactDisc cd = template.getForObject
-                ("http://localhost:8080/api/compactdiscs/16", CompactDisc.class);
-        assertThat(cd.getArtist(), equalTo("Spice Girls"));
-    }
-
-}
+```
+private RestTemplate template = new RestTemplate();
 ```
 
-2. Launch your Spring Boot application as normal.
-   
-3. With the server running, now run the tests and see if you can understand what is happening.
+3. The RestRTemplate is quite easy to use, so let's try it out retrieving all the CDs in the catalog by adding the following test.
+
+```
+@Test
+public void testFindAll() {
+    List<CompactDisc> cds = template.getForObject("http://localhost:8080/api/compactdiscs", List.class);
+    assertThat(cds.size(),  greaterThan(1));
+}
+```
+4. You cannot run this test until you start your actual application, since remember this test is testing the working application, so launch your application as normal.
+
+5. Run the test, and it should pass.
+
+6. Now let's add an additional test to retrieve a specific CD. 
+
+```
+@Test
+public void testCdById() {
+    CompactDisc cd = template.getForObject
+            ("http://localhost:8080/api/compactdiscs/16", CompactDisc.class);
+    assertThat(cd.getArtist(), equalTo("Spice Girls"));
+}
+```
+7. You can run this test in the same way, making sure your server is still running.
