@@ -56,6 +56,21 @@
 			<scope>test</scope>
 		</dependency>-->
 
+		<!-- Required for Java 11 but breaks Java 8-->
+		<!--<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.1</version>
+		</dependency>-->
+		<!-- Required for Java 11 but breaks Java 8-->
+		<!-- https://mvnrepository.com/artifact/org.javassist/javassist -->
+		<!--<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.25.0-GA</version>
+		</dependency>-->
+		
+
 
 		<!-- Swagger support -->
 		 <dependency>
