@@ -2,6 +2,7 @@ package functional.tests;
 
 
 import com.conygre.spring.boot.entities.CompactDisc;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,12 +18,14 @@ public class CompactDiscRestTests {
 
     private RestTemplate template = new RestTemplate();
 
+    @Ignore
     @Test
     public void testFindAll() {
         List<CompactDisc> cds = template.getForObject("http://localhost:8080/api/compactdiscs", List.class);
         assertThat(cds.size(),  greaterThan(1));
     }
 
+    @Ignore
     @Test
     public void testCdById() {
         CompactDisc cd = template.getForObject

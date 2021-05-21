@@ -45,10 +45,14 @@ public class TestCDRepository {
     @Autowired
     CompactDiscController controller;
 
+    private int discId;
+
     @Before
     public  void setupDatabaseEntryForReadOnlyTests() {
         CompactDisc disc = new CompactDisc("Abba Gold", 12.99, "Abba", 5);
-        manager.persist(disc);
+        CompactDisc result = manager.persist(disc);
+        discId = result.getId();
+
     }
 
 
@@ -74,7 +78,7 @@ public class TestCDRepository {
     // integration test with the controller
     @Test
     public void controllerCanReturnCDById() {
-        CompactDisc cd = controller.getCdById(1);
+        CompactDisc cd = controller.getCdById(discId);
         assertThat(cd.getArtist(), equalTo("Abba"));
     }
 
