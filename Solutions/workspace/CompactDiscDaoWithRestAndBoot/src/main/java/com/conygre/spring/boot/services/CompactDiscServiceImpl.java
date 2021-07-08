@@ -8,6 +8,8 @@ import com.conygre.spring.boot.entities.CompactDisc;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 public class CompactDiscServiceImpl implements CompactDiscService {
 
@@ -30,7 +32,11 @@ public class CompactDiscServiceImpl implements CompactDiscService {
 
 	@Override
 	public CompactDisc getCompactDiscById(int id) {
-		return dao.findById(id).get();
+		Optional<CompactDisc> discOptional =  dao.findById(id);
+		if (discOptional.isPresent()) {
+			return discOptional.get();
+		}
+		else return null;
 	}
 
 	@Override
