@@ -103,9 +103,7 @@ public void testCdById() {
 
 10. Run this test in the same way that you ran the previous test.
 
-11. Unfortunately, the configuration class will interfere with our later tests, so add the @Ignore to the top of each your tests, and then comment out the @TestConfiguration annotation on the config class.
-
-
+11. Unfortunately, the configuration class will interfere with our later tests, so add the @Ignore to the top of each your tests, and then comment out the three `@Bean` and `@Primary` annotations in the config class.
 
 
 ## Part 2: Add some Integration Tests
@@ -127,10 +125,10 @@ Now we will test our service and repo layer integration. Does the service layer 
 These annotations will set up an in memory database since we don't want to test with the actual database - remember we are only testing the integration between the two classes. We then specify the config class which is our spring boot application config, and the finally we specify an alternative application.properties files to use. This is stop swagger breaking our tests!
 
 3. Now we can inject a special three beans into our test:
-   1. A spring class called a TestEntityManager. We need this to put some test data into our project.
-   2. The CompactDiscRepository so we can test it works with the service layer
-   3. The CompactDiscService object which will have the repository injected which will in turn use the in memory database
-   4. The CompactDiscController. We can also test this class if we want to.
+   1. A spring class called a `TestEntityManager`. We need this to put some test data into our project.
+   2. The `CompactDiscRepository` so we can test it works with the service layer
+   3. The `CompactDiscService` object which will have the repository injected which will in turn use the in memory database
+   4. The `CompactDiscController`. We can also test this class if we want to.
 
 ```
     @Autowired
@@ -148,7 +146,7 @@ These annotations will set up an in memory database since we don't want to test 
     CompactDiscController controller;
 ```
 
-4. To set up the database for our tests, we can use an @Before method which will insert a row into our in memory database. The returned primary key we can then put into a variable so it can be checked by our tests when retrieving by ID.
+4. To set up the database for our tests, we can use an `@Before` method which will insert a row into our in memory database. The returned primary key we can then put into a variable so it can be checked by our tests when retrieving by ID.
 
 ```
 private int discId;
@@ -204,15 +202,13 @@ Finally let's create some functional test using RestTemplate.
 
 1. Create a class called `functional.tests.CompactDiscRestTests` and add the following code:
 
-```
-
 2. Within the class, instantiate a property of type `RestTemplate`.
 
 ```
 private RestTemplate template = new RestTemplate();
 ```
 
-3. The RestRTemplate is quite easy to use, so let's try it out retrieving all the CDs in the catalog by adding the following test.
+3. The `RestTemplate` is quite easy to use, so let's try it out retrieving all the CDs in the catalog by adding the following test.
 
 ```
 @Test
