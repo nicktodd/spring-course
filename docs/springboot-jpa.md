@@ -14,7 +14,7 @@ In this exercise you will see how easy it is to build a complete end to end appl
 <parent>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-starter-parent</artifactId>
-	<version>2.1.3.RELEASE</version>
+	<version>2.0.5.RELEASE</version>
 </parent>
 ```
 
