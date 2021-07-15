@@ -1,0 +1,9 @@
+POST http://localhost:8080/api/compactdiscs
+Content-type: application/json
+
+{
+    "title" : "Sweet Caroline",
+    "artist" : "Neil Diamond",
+    "price" : "13.99",
+    "tracks" : "1"
+}

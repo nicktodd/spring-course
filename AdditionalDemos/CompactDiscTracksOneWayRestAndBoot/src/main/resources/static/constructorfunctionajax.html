@@ -1,0 +1,85 @@
+<html>
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+function CompactDisc(title, artist, tracks, price, id) {
+	this.title = title;
+	this.artist = artist;
+	this.price = price;
+	this.tracks = tracks;
+	this.id = id;
+}
+
+function postNewCD() {
+
+	var disc = new CompactDisc("Thriller", "Michael Jackson", 12, 9.99, 0);
+	$.ajax({
+	  type: 'POST',
+	  url: 'api/compactdiscs',
+	  data: JSON.stringify(disc),
+	  success: handlePost,
+	  contentType: 'application/json'
+});
+}
+
+function handlePost() {
+	getAllCDsUsingJQuery();
+}
+
+var myData;
+var request;
+
+function getAllCDs() {
+	request = new XMLHttpRequest();
+	request.open("get", "api/compactdiscs", true);
+	request.onreadystatechange = handleResponse;
+	request.send();
+
+}
+
+
+function getAllCDsUsingJQuery() {
+	$.get("api/compactdiscs",
+			null,
+			handleResponseJQuery);
+
+}
+
+function handleResponseJQuery(myData) {
+	//myData = JSON.parse(data);
+			$("#title").text(myData.discCollection[0].title);
+			$("#artist").text(myData.discCollection[0].artist);
+		$("p").fadeOut(4000).fadeIn(4000);
+
+}
+
+
+function handleResponse() {
+
+	if (request.readyState == 4) {
+		myData = JSON.parse(request.responseText);
+		$("#title").text(myData.discCollection[0].title);
+		$("#artist").text(myData.discCollection[0].artist);
+		$("p").fadeOut(4000).fadeIn(4000);
+	}
+
+
+
+}
+
+$(document).ready(function() {
+	postNewCD();
+
+});
+
+//window.onload = postNewCD;
+
+</script>
+</head>
+<body>
+<h1>CD Page</h1>
+<p id="title"></p>
+<p id="artist"></p>
+</body>
+</html>
