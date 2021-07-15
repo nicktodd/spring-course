@@ -21,4 +21,9 @@ public class TrackController {
         return service.getTracksByCdId(cdId);
     }
 
+    @PostMapping
+    public void addTrack(@RequestBody Track t) {
+        service.addTrack(t);
+    }
+
 }

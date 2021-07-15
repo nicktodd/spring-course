@@ -17,4 +17,9 @@ public class TrackServiceImpl implements TrackService {
         return repo.findByCdId(cdId);
     }
 
+    @Override
+    public void addTrack(Track t) {
+        repo.save(t);
+    }
+
 }

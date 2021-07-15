@@ -6,4 +6,6 @@ import java.util.Collection;
 
 public interface TrackService {
     Collection<Track> getTracksByCdId(int cdId);
+
+    void addTrack(Track t);
 }

@@ -1,0 +1,8 @@
+POST http://localhost:8080/api/tracks
+Content-type: application/json
+
+{
+    "cdId": "16",
+    "title": "New Track"
+    
+}
