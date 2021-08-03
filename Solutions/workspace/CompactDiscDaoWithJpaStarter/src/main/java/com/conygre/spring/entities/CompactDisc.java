@@ -4,15 +4,9 @@ package com.conygre.spring.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.*;
-
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.Cascade;
 
 
 // add an annotations specifying the table that this will map to
@@ -20,22 +14,22 @@ import org.hibernate.annotations.Cascade;
 
 // Adding caching
 //@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
-//@Cacheable 
+//@Cacheable
 
 // ensure that the class implements Serializable
 
 @NamedQueries(
 		{
-			@NamedQuery(name="compactdisc.getAll", 
-			query="select cd from CompactDisc as cd where cd.price > :price", 
-			hints = {@QueryHint(name = "org.hibernate.cacheable", value = "true")})
+				@NamedQuery(name="compactdisc.getAll",
+						query="select cd from CompactDisc as cd where cd.price > :price",
+						hints = {@QueryHint(name = "org.hibernate.cacheable", value = "true")})
 		})
 
 
 
 public class CompactDisc implements Serializable {
 
-	
+
 	// add an attribute specifying a column for the id property
 	// add attributes to ensure that the id column is automantically generated
 	@Id
@@ -52,22 +46,19 @@ public class CompactDisc implements Serializable {
 	public CompactDisc() {}
 
 	public CompactDisc(String t, double p,String a, int tr){
-	    title=t;
-	    price=p;
-	    artist=a;
-	    tracks=tr;
-	    
-	  }
+		title=t;
+		price=p;
+		artist=a;
+		tracks=tr;
+
+	}
 
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public void addTrack(Track t) {
-		t.setDisc(this);
-		trackTitles.add(t);
-	}
-	
+
+
+
 	public String getArtist() {
 		return artist;
 	}
@@ -104,8 +95,9 @@ public class CompactDisc implements Serializable {
 		return id;
 	}
 
-	// Adding relationships 
-	@OneToMany(mappedBy="disc", cascade={CascadeType.MERGE, CascadeType.PERSIST})
+	// Adding relationships
+	@JoinColumn(name="id", referencedColumnName="id")
+	@OneToMany( cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	private List<Track> trackTitles = new ArrayList<Track>();
 
 	public List<Track> getTrackTitles() {
