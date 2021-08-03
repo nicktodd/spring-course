@@ -5,11 +5,14 @@
 // is accessed by the pages
 
 package com.conygre.spring.entities;
+// this is a regular JavaBean that instances of will be passed
+// back to the web application clients
+// the alternative is to pass entity bean references back for the CDs,
+// but this would mean a substantial overhead in remote reference calls as all the data
+// is accessed by the pages
 
 import javax.persistence.*;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.io.Serializable;
 
@@ -18,60 +21,58 @@ import java.io.Serializable;
 @Entity @Table(name="tracks")
 public class Track implements Serializable {
 
-  //Instance variables
-  @Column(name="title") private String title;
+    //Instance variables
+    @Column(name="title") private String title;
 
 
-  	@Id
-  	@GeneratedValue(strategy=GenerationType.IDENTITY)
-  	@Column(name="id")
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id")
+    private Integer id;
 
-  //Methods
-  public Integer getId(){
-    return id;
-  }
+    public int getCdId() {
+        return cdId;
+    }
 
-  public void setId(Integer s){
-    id = s;
-  }
+    public void setCdId(int cdId) {
+        this.cdId = cdId;
+    }
 
-  public void setTitle(String s){
-    title = s;
-  }
+    @Column(name="cd_id")
+    private int cdId;
+
+    //Methods
+    public Integer getId(){
+        return id;
+    }
+
+    public void setId(Integer s){
+        id = s;
+    }
+
+    public void setTitle(String s){
+        title = s;
+    }
 
 
-  public String getTitle(){
-    return title;
-  }
+    public String getTitle(){
+        return title;
+    }
 
 
-  // bidirectional
-  @JoinColumn (name="cd_id", referencedColumnName="id", nullable = false)
-  @ManyToOne
-  //@JsonBackReference
-  private CompactDisc disc;
-  
 
-  public CompactDisc getDisc() {
-	return disc;
-}
+    //constructors
+    public Track(){}
 
-public void setDisc(CompactDisc disc) {
-	this.disc = disc;
-}
+    public Track(int id,  String title, int cdId){
+        this.title=title;
+        this.id = id;
+        this.cdId = cdId;
 
-//constructors
-  public Track(){}
+    }
 
-  public Track(int id,  String title, CompactDisc disc){
-    this.title=title;
-    this.id = id;
-    this.disc = disc;
-  }
-  
-  
-  public Track(String title) {
-	  this.title = title;
-  }
+
+    public Track(String title) {
+        this.title = title;
+    }
 }
