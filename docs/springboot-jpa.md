@@ -36,6 +36,21 @@ In this exercise you will see how easy it is to build a complete end to end appl
 	</dependency>
 </dependencies>
 ```
+4. Since you are running on Java 11, then a couple of additional dependencies are required. These used to be part of Java 8 but were removed. Our application uses these libraries, so we must add these dependencies back in:
+
+```
+<dependency>
+	<groupId>javax.xml.bind</groupId>
+	<artifactId>jaxb-api</artifactId>
+	<version>2.3.1</version>
+</dependency>
+<dependency>
+	<groupId>org.javassist</groupId>
+	<artifactId>javassist</artifactId>
+	<version>3.25.0-GA</version>
+</dependency>
+```
+
 4.	Finally add the spring boot plugin:
 ```
 <build>
@@ -47,13 +62,15 @@ In this exercise you will see how easy it is to build a complete end to end appl
 	</plugins>
 </build>
 ```
+Obviously all of this could have been done using the Spring Initializer, but doing it manually like this demonstrates that really all the Spring Initializer does it put all these things into your POM or Gradle file.
+
 
 ## Part 2 Create and Include the Required Classes
 1.	Begin by copying the CompactDisc and Track entity classes into your project.
 
 2.	Copy in your Spring Data Repository interface from the Spring Data exercise.
 
-3.	Copy over your CompactDiscService class from your Spring Data exercise, and define an interface for it.
+3.	Copy over your CompactDiscService class from your Spring Data exercise, and define an interface for it - renaming the class ```CompactDiscServiceImpl```, with an interface called ```CompactDiscService```.
 
 ```
 public interface CompactDiscService {
