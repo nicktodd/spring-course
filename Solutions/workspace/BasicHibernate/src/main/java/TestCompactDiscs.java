@@ -31,6 +31,8 @@ public class TestCompactDiscs {
 		//disc.setTitle("Mylo Xyloto");
 
 
+		Query allSpiceGirlsTracks = em.createQuery("select t.title from Track t where t.cdId  = 16");
+		allSpiceGirlsTracks.getResultList().forEach(System.out::println);
 		tx.commit();
 		em.close();
 
