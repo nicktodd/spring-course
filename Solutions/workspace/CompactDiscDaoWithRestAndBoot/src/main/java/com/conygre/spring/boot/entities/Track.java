@@ -5,7 +5,6 @@
 // is accessed by the pages
 
 package com.conygre.spring.boot.entities;
-
 import javax.persistence.*;
 
 
@@ -20,10 +19,21 @@ public class Track implements Serializable {
   @Column(name="title") private String title;
 
 
-  	@Id
-  	@GeneratedValue(strategy=GenerationType.IDENTITY)
-  	@Column(name="id")
-	private Integer id;
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Column(name="id")
+  private Integer id;
+
+  public int getCdId() {
+    return cdId;
+  }
+
+  public void setCdId(int cdId) {
+    this.cdId = cdId;
+  }
+
+  @Column(name="cd_id")
+  private int cdId;
 
   //Methods
   public Integer getId(){
@@ -44,32 +54,19 @@ public class Track implements Serializable {
   }
 
 
-  // bidirectional
-  @JoinColumn (name="cd_id", referencedColumnName="id", nullable = false)
-  @ManyToOne
-  @com.fasterxml.jackson.annotation.JsonIgnore
-  private CompactDisc disc;
-  
 
-  public CompactDisc getDisc() {
-	return disc;
-}
-
-  public void setDisc(CompactDisc disc) {
-	this.disc = disc;
-}
-
-//constructors
+  //constructors
   public Track(){}
 
-  public Track(int id,  String title, CompactDisc disc){
+  public Track(int id,  String title, int cdId){
     this.title=title;
     this.id = id;
-    this.disc = disc;
+    this.cdId = cdId;
+
   }
-  
-  
+
+
   public Track(String title) {
-	  this.title = title;
+    this.title = title;
   }
 }
