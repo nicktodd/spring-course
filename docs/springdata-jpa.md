@@ -22,7 +22,7 @@ We will migrate the previous exercise application that uses JPA to use Spring Da
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 		<artifactId>spring-data-releasetrain</artifactId>
-			<version>Lovelace-RELEASE</version>
+			<version>Neumann-RELEASE</version>
 			<scope>import</scope>
 			<type>pom</type>
 		</dependency>
@@ -48,12 +48,12 @@ We will migrate the previous exercise application that uses JPA to use Spring Da
 	<dependency>
 		<groupId>org.hibernate</groupId>
 		<artifactId>hibernate-entitymanager</artifactId>
-		<version>5.0.7.Final</version>
+		<version>5.5.5.Final</version>
 	</dependency>
 </dependencies>
 ```
 
-6.	Now finally, add the build entry to force Maven to treat your project as Java 8.
+6.	Now finally, ensure that you have a build entry to force Maven to treat your project as Java 11.
 
 ```
 <build>
@@ -63,8 +63,8 @@ We will migrate the previous exercise application that uses JPA to use Spring Da
 			<artifactId>maven-compiler-plugin</artifactId>
 			<version>3.2</version>
 			<configuration>
-				<source>1.8</source>
-				<target>1.8</target>
+				<source>1.11</source>
+				<target>1.11</target>
 			</configuration>
 		</plugin>
 	</plugins>

@@ -5,32 +5,23 @@
 
 ### Aims
 You will now create a class for the track table, and add in the annotations for the relationship between the compact disc and the track.
+
+Your relationship will be a **one way / one to many relationship**. In other words, the `CompactDisc` will know about its `Track`s, but the tracks will not know about the CompactDisc object. They will however maintain the foreign key as a property in case you ever need to retrieve the album that a track is on.
+
 Create the Annotated Track Entity
-1.	Return to Eclipse, and in the Project Explorer right click on the src/main/java folder and click New and then click Class. 
+1.	In your IDE, in the same package as the `CompactDisc`, create a new class with the name `Track`.
 
-2.	Create the class with the name Track in the package com.conygre.training.entities.
+2.	Add the following properties along with the get/set methods and required annotations.
 
-3.	Add the following properties along with the get/set methods.
-
-id	Integer
-
-title	String
-
-disc	CompactDisc
-
+| Property name | Property type | Column name |Special considerations |
+---|---|---|---
+| id	   |Integer| id | Primary key 
+| title |String | title | |
+|cdId | Integer | cd_id | Foreign key just mapped as a simple property |
 
 4.	Add the annotation to specify that the class is an entity, and then the annotation specifying the table that you are mapping it to.
 
-5.	Ensure that the class now implements the Serializable interface.
-
-6.	Add annotations to each of the properties specifying which column in the database it maps to.
-For the disc property it needs to know which CompactDisc the track is on. 
-
-```
-@JoinColumn (name="cd_id", referencedColumnName="id", nullable = false)
-@ManyToOne
-private CompactDisc disc;
-```
+5.	Ensure that the class implements the Serializable interface.
 
 ### Update the CompactDisc Entity
 
@@ -39,23 +30,16 @@ private CompactDisc disc;
 2.	Annotate the List as follows:
 
 ```
-@OneToMany(mappedBy="disc")
+@JoinColumn(name="id", referencedColumnName="id")
+@OneToMany
 private List<Track> trackTitles = new ArrayList<Track>();
 ```
 
-3.	Add a new method to the CompactDisc class to allow users to add a track. In this method, you must also set the Track to know about the CompactDisc that it is on, so you can do this with:
+
+3.	Open the TestCompactDiscs class and update the code to retrieve CD number 16 (which has tracks in the database), and then retrieve the track information and display it. A suitable query is shown below:
 
 ```
-public void addTrack(Track t) {
-	t.setDisc(this);
-	trackTitles.add(t);
-}
-```
-
-4.	Open the TestCompactDiscs class and update the code to retrieve CD number 16 (which has tracks in the database), and then retrieve the track information and display it. A suitable query is shown below:
-
-```
-Query allSpiceGirlTracks = em.createQuery("select t.title from Track t where t.disc.id  = 16”);
+Query allSpiceGirlTracks = em.createQuery("select t.title from Track t where t.cdId  = 16”);
 ```
 
 5.	Run the application to see it working.
@@ -70,7 +54,7 @@ Query allSpiceGirlTracks = em.createQuery("select t.title from Track t where t.d
 3.	In the CompactDisc class, update the Annotation on the Track collection to cascade. Try adding an album again with tracks. Does it persist the tracks this time?
 
 ```
-@OneToMany(mappedBy="disc", cascade={CascadeType.MERGE, CascadeType.PERSIST})
+@OneToMany( cascade={CascadeType.MERGE, CascadeType.PERSIST})
 private List<Track> trackTitles = new ArrayList<Track>();
 ```
 
