@@ -3,6 +3,7 @@ package com.conygre.spring.service;
 import com.conygre.spring.dao.CompactDiscRepository;
 import com.conygre.spring.entities.CompactDisc;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -16,6 +17,8 @@ import java.util.Optional;
 @Transactional(propagation = Propagation.REQUIRED)
 public class CompactDiscService {
 
+	Logger logger = Logger.getLogger(this.getClass());
+
 	@Autowired
 	private CompactDiscRepository dao;
 
@@ -25,6 +28,7 @@ public class CompactDiscService {
 	}
 
 	public Collection<CompactDisc> getCatalog() {
+		logger.info("just getting the catalog");
 		return dao.findAll();
 	}
 

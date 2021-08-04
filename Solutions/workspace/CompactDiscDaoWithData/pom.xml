@@ -1,6 +1,4 @@
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.conygre.spring4.rest</groupId>
@@ -13,7 +11,7 @@
 			<dependency>
 				<groupId>org.springframework.data</groupId>
 				<artifactId>spring-data-releasetrain</artifactId>
-				<version>Neumann-RELEASE</version><!--Lovelace-RELEASE-->
+				<version>Neumann-RELEASE</version> <!--Lovelace-RELEASE-->
 				<scope>import</scope>
 				<type>pom</type>
 			</dependency>
@@ -40,8 +38,21 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-			<version>5.5.5.Final</version><!--5.0.7-->
+			<version>5.5.5.Final</version> <!--5.0.7-->
 		</dependency>
+		<!-- log4j required to allow the log file to work -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<!-- Spring needs the slf4j StaticLoggerBinder to work -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.25</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
