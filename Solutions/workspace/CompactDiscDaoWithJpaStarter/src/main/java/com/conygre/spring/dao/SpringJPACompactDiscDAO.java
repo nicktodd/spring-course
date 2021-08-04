@@ -17,7 +17,7 @@ import com.conygre.spring.entities.CompactDisc;
 
 
 @Repository
-public class SpringJPACompactDiscDAO implements CompactDiscDAO{
-
+public class SpringJPACompactDiscDAO //implements CompactDiscDAO{
+{
 	
 }
