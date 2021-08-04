@@ -43,7 +43,18 @@
 			<version>${mysql.connector.version}</version>
 		</dependency>
 
-	
+		<!-- log4j required to allow the log file to work -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<!-- Spring needs the slf4j StaticLoggerBinder to work -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.25</version>
+		</dependency>
 
 	</dependencies>
 
