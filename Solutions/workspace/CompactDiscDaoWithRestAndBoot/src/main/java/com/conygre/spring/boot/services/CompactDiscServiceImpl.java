@@ -1,5 +1,10 @@
 package com.conygre.spring.boot.services;
 
+
+
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +21,11 @@ public class CompactDiscServiceImpl implements CompactDiscService {
 	@Autowired
 	private CompactDiscRepository dao;
 
+	private static final Logger logger = LogManager.getLogger(CompactDiscServiceImpl.class);
+
+
+
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -23,6 +33,7 @@ public class CompactDiscServiceImpl implements CompactDiscService {
 	 */
 	@Transactional(propagation = Propagation.REQUIRED)
 	public Iterable<CompactDisc> getCatalog() {
+		logger.info("getting the catalog");
 		// create a UnitOfWork (that contains an entity manager)
 		// start the tx in the unit of work
 		return dao.findAll(); // pass in the unit of work
