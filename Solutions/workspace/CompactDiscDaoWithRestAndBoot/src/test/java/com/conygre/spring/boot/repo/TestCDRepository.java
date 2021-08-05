@@ -56,7 +56,6 @@ public class TestCDRepository {
     }
 
 
-
     // unit test the repo using a mock database
     @Test
     public void canRetrieveCDByArtist() {

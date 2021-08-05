@@ -32,14 +32,14 @@ import static org.mockito.Mockito.when;
 configured beans in this test!
  */
 
-
+/* This test also requires a specific version of Mockito in the pom when using Java 11 */
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes=TestCompactDiscControllerUnitTest.Config.class)
 public class TestCompactDiscControllerUnitTest {
 
     // Define a configuration class used for our test
     // it is static so there is only one instance of it
-    @TestConfiguration
+    //@TestConfiguration
     protected static class Config {
 
         // needed for the Spring repo dependency in the service layer
