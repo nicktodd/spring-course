@@ -4,8 +4,8 @@ import com.conygre.spring.boot.AppConfig;
 import com.conygre.spring.boot.entities.CompactDisc;
 import com.conygre.spring.boot.services.CompactDiscService;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -34,10 +35,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Created by Nick Todd on 30/08/2017.
  */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @WebMvcTest(CompactDiscController.class)
 @ContextConfiguration(classes={com.conygre.spring.boot.AppConfig.class})
-@TestPropertySource(locations = "classpath:application-test.properties") // this is only needed because swagger breaks tests
+//@TestPropertySource(locations = "classpath:application-test.properties") // needed in SpringBoot 2.0.x as Swagger breaks tests
 public class TestCompactDiscController {
 
 

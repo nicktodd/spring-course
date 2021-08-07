@@ -2,12 +2,18 @@ package com.conygre.spring.boot;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
+
+import org.springframework.plugin.core.SimplePluginRegistry;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 @EnableSwagger2
 @Profile("!test") // here to fix a bug in swagger since swagger messes up the test class
@@ -34,4 +40,12 @@ public class SwaggerConfig {
                 //.version("2.0")
                 .build();
     }
+
+    // Required for SpringBoot 2.2.x and higher
+    /*@Bean
+    public LinkDiscoverers discoverers() {
+        List<LinkDiscoverer> plugins = new ArrayList<>();
+        plugins.add(new CollectionJsonLinkDiscoverer());
+        return new LinkDiscoverers(SimplePluginRegistry.create(plugins));
+    }*/
 }

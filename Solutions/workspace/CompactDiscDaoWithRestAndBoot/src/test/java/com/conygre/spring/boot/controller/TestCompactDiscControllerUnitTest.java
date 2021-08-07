@@ -4,9 +4,12 @@ import com.conygre.spring.boot.entities.CompactDisc;
 import com.conygre.spring.boot.repos.CompactDiscRepository;
 import com.conygre.spring.boot.rest.CompactDiscController;
 import com.conygre.spring.boot.services.CompactDiscService;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.hamcrest.MatcherAssert;
+
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -14,6 +17,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -23,8 +27,9 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
-import static org.junit.Assert.assertThat;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -33,25 +38,26 @@ configured beans in this test!
  */
 
 /* This test also requires a specific version of Mockito in the pom when using Java 11 */
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes=TestCompactDiscControllerUnitTest.Config.class)
 public class TestCompactDiscControllerUnitTest {
 
     // Define a configuration class used for our test
     // it is static so there is only one instance of it
-    //@TestConfiguration
+    // NOTE breaks other tests as the scope of this configuration goes to all test classes
+    @TestConfiguration
     protected static class Config {
 
         // needed for the Spring repo dependency in the service layer
-        //@Bean
-        //@Primary
+        @Bean
+        @Primary
         public CompactDiscRepository repo() {
             return mock(CompactDiscRepository.class);
         }
 
         // create a mock service layer than when asked for all the CDs returns a single CD in a list
-        //@Bean
-        //@Primary
+        @Bean
+        @Primary
         public CompactDiscService service() {
             CompactDisc cd = new CompactDisc();
             List<CompactDisc> cds = new ArrayList<>();
@@ -63,8 +69,8 @@ public class TestCompactDiscControllerUnitTest {
             return service;
         }
 
-        //@Bean
-        //@Primary
+        @Bean
+        @Primary
         public CompactDiscController controller() {
             return new CompactDiscController();
         }
@@ -73,7 +79,7 @@ public class TestCompactDiscControllerUnitTest {
     @Autowired
     private CompactDiscController controller;
 
-    @Ignore
+    @Disabled
     @Test
     public void testFindAll() {
         Iterable<CompactDisc> cds = controller.findAll();
@@ -81,7 +87,7 @@ public class TestCompactDiscControllerUnitTest {
         assertThat(stream.count(), equalTo(1L));
     }
 
-    @Ignore
+    @Disabled
     @Test
     public void testCdById() {
         CompactDisc cd = controller.getCdById(1);
