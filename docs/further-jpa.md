@@ -30,7 +30,7 @@ Create the Annotated Track Entity
 2.	Annotate the List as follows:
 
 ```
-@JoinColumn(name="id", referencedColumnName="id")
+@JoinColumn(name="cd_id", referencedColumnName="id")
 @OneToMany
 private List<Track> trackTitles = new ArrayList<Track>();
 ```
