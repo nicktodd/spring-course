@@ -54,7 +54,7 @@ Regardless of your IDE, now you can do the following:
 
 1.	Open the pom.xml file in your editor (in Eclipse, you will need to click the Source tab).
 
-2. 	Add the following dependencies to your project (you can paste them from this document). They go directly underneath the `name` element.
+2. 	Add the following dependencies to your project (you can paste them from this document). They go directly underneath the `name` element. If you do not have a `name` element, then after the `version` element.
 
 ```
 <dependencies>
