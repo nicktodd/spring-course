@@ -4,25 +4,19 @@ import com.conygre.spring.boot.entities.CompactDisc;
 import com.conygre.spring.boot.repos.CompactDiscRepository;
 import com.conygre.spring.boot.rest.CompactDiscController;
 import com.conygre.spring.boot.services.CompactDiscService;
-import org.hamcrest.MatcherAssert;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -45,7 +39,7 @@ public class TestCompactDiscControllerUnitTest {
     // Define a configuration class used for our test
     // it is static so there is only one instance of it
     // NOTE breaks other tests as the scope of this configuration goes to all test classes
-    @TestConfiguration
+    //@TestConfiguration
     protected static class Config {
 
         // needed for the Spring repo dependency in the service layer
