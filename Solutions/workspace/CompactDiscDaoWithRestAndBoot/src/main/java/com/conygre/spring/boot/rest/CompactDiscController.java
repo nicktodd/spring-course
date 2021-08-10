@@ -4,6 +4,8 @@ import com.conygre.spring.boot.services.CompactDiscService;
 import com.conygre.spring.boot.entities.CompactDisc;
 import io.swagger.annotations.ApiOperation;
 //import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +18,7 @@ import java.util.Collection;
 @CrossOrigin // allows requests from all domains
 public class CompactDiscController {
 
-	// private Logger logger = Logger.getLogger(this.getClass());
+	private static Logger logger = LogManager.getLogger(CompactDiscController.class);
 
 	@Autowired
 	private CompactDiscService service;
@@ -24,7 +26,7 @@ public class CompactDiscController {
 	@ApiOperation(value = "findAll", nickname = "findAll")
 	@RequestMapping(method = RequestMethod.GET)
 	public Iterable<CompactDisc> findAll() {
-		// logger.info("managed to call a Get request for findAll");
+		logger.info("managed to call a Get request for findAll");
 		return service.getCatalog();
 	}
 
