@@ -7,6 +7,7 @@ import org.springframework.plugin.core.SimplePluginRegistry;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -34,18 +35,10 @@ public class SwaggerConfig {
                 .title("Album REST API with Swagger")
                 .description("This API allows you to interact with albums. It is a CRUD API")
                 //.termsOfServiceUrl("http://www.conygre.com")
-                .contact("Nick Todd")
+                .contact(new Contact("Nick Todd", "http://www.conygre.com", "nick.todd@conygre.com"))
                 //.license("Apache License Version 2.0")
                 //.licenseUrl("https://github.com/IBM-Bluemix/news-aggregator/blob/master/LICENSE")
                 //.version("2.0")
                 .build();
     }
-
-    // Required for SpringBoot 2.2.x and higher
-    /*@Bean
-    public LinkDiscoverers discoverers() {
-        List<LinkDiscoverer> plugins = new ArrayList<>();
-        plugins.add(new CollectionJsonLinkDiscoverer());
-        return new LinkDiscoverers(SimplePluginRegistry.create(plugins));
-    }*/
 }
