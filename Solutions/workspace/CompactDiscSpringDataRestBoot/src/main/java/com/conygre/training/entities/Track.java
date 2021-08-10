@@ -47,19 +47,15 @@ public class Track implements Serializable {
   }
 
 
-  // bidirectional
-  @JoinColumn (name="cd_id", referencedColumnName="id", nullable = false)
-  @ManyToOne
-  @com.fasterxml.jackson.annotation.JsonIgnore
-  private CompactDisc disc;
-  
+  @Column(name="cd_id")
+  private int cdId;
 
-  public CompactDisc getDisc() {
-	return disc;
+  public int getCdId() {
+    return cdId;
 }
 
-  public void setDisc(CompactDisc disc) {
-	this.disc = disc;
+public void setCdId(int cdId) {
+    this.cdId = cdId;
 }
 
 //constructors

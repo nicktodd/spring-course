@@ -19,13 +19,16 @@ import java.io.Serializable;
 public class Track implements Serializable {
 
   //Instance variables
-  @Column(name="title") private String title;
+  @Column(name="title") 
+  private String title;
+  
+  @Column(name="cd_id")
+  private int cdId;
 
-
-  	@Id
-  	@GeneratedValue(strategy=GenerationType.AUTO)
-  	@Column(name="id")
-	private Integer id;
+  @Id
+  @GeneratedValue(strategy=GenerationType.IDENTITY)
+  @Column(name="id")
+  private Integer id;
 
   //Methods
   public Integer getId(){
@@ -45,21 +48,16 @@ public class Track implements Serializable {
     return title;
   }
 
-
-  // bidirectional
-  @JoinColumn (name="cd_id", referencedColumnName="id", nullable = false)
-  @ManyToOne
-  //@JsonBackReference
-  private CompactDisc disc;
-  
-
-  public CompactDisc getDisc() {
-	return disc;
+  public int getCdId() {
+    return cdId;
 }
 
-public void setDisc(CompactDisc disc) {
-	this.disc = disc;
+public void setCdId(int cdId) {
+    this.cdId = cdId;
 }
+
+
+
 
 //constructors
   public Track(){}

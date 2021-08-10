@@ -65,7 +65,7 @@ public class CompactDisc implements Serializable {
 	
 	public void addTrack(Track t) {
 		trackTitles.add(t);
-		t.setDisc(this);
+		
 	}
 	
 	public String getArtist() {
@@ -104,8 +104,9 @@ public class CompactDisc implements Serializable {
 		return id;
 	}
 
-	// Adding relationships 
-	@OneToMany(mappedBy="disc", cascade={CascadeType.MERGE, CascadeType.PERSIST})
+	// Adding relationships
+	@JoinColumn(name="cd_id", referencedColumnName="id")
+	@OneToMany( cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	private List<Track> trackTitles = new ArrayList<Track>();
 
 	public List<Track> getTrackTitles() {
@@ -115,6 +116,7 @@ public class CompactDisc implements Serializable {
 	public void setTrackTitles(List<Track> trackTitles) {
 		this.trackTitles = trackTitles;
 	}
+
 
 
 

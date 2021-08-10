@@ -96,7 +96,7 @@ public class CompactDisc implements Serializable {
 	}
 
 	// Adding relationships
-	@JoinColumn(name="id", referencedColumnName="id")
+	@JoinColumn(name="cd_id", referencedColumnName="id")
 	@OneToMany( cascade={CascadeType.MERGE, CascadeType.PERSIST})
 	private List<Track> trackTitles = new ArrayList<Track>();
 
