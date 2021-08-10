@@ -9,13 +9,69 @@ You will need a project to add some tests into. A good starting point would be a
 Open your new project in your preferred IDE such as IntelliJ.
 
 
+## Preparation: Review / Add in the Dependencies
+If you are using your solution to the previous exercise, you will need to add the following dependencies to your pom.xml file. If you are using the solution, you can review the following entries that are already in the pom.xml file.
+
+1. Open your project pom.xml file and add in / review the following dependency. This is the standard SpringBoot testing framework libraries are added into your project.
+
+```
+<dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-test</artifactId>
+   <scope>test</scope>
+</dependency>
+```
+
+2. Now locate / add in the following dependency. This dependency gives us an in memory database. We can use this when completing integration testing to ensure our system can work correctly with a database.
+
+```
+<dependency>
+  <groupId>com.h2database</groupId>
+  <artifactId>h2</artifactId>
+  <scope>test</scope>
+  <version>1.4.200</version>
+</dependency>
+```
+
+3. Now add the following dependency. This is used for Mocking. The library is called Mockito:
+
+```
+<dependency>
+  <groupId>org.mockito</groupId>
+  <artifactId>mockito-core</artifactId>
+  <version>2.22.0</version>
+  <scope>test</scope>
+</dependency>
+```
+
+4. Our tests will be using JUnit 5, but we can also add in a dependency on JUnit 4 which is still used a great deal in testing libraries, so add in this final dependency. Note the exclusion so we can keep the Hamcrest matchers.
+
+```
+<dependency>
+    <groupId>org.junit.vintage</groupId>
+    <artifactId>junit-vintage-engine</artifactId>
+    <scope>test</scope>
+    <exclusions>
+        <exclusion>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+```
+
+5. Finally, we will set up a test profile. A test profile is an alternative configuration for our application. We will create a test profile. In essence, they are an alternative application.properties file. You can do profiles for production, for testing, for development, and for whatever else you might want. To do this, create a new folder `src/test/resourcces`, and then create an empty file in it called `application-test.properties`.
+
+Now we are ready to write some tests!!
+
+
 ## Part 1 Create some Unit Tests
 
 First we will create some unit tests. We will test our controller class. Now the controller requires a Service layer which also requires a Repository layer. We don't want to test those two layers so they need to be mocked.
 
 1. In `src/test/java`, create a new class called `com.conygre.spring.boot.controller.TestCompactDiscControllerUnitTest`.
 
-2. Annotate the class with the `@RunWith(SpringRunnner.class)` annotation. This tells the test engine to use the SpringRunner which allows for alternative test configurations.
+2. Annotate the class with the `@ExtendWith(SpringExtension.class)` annotation. This tells the test engine to use the SpringExtension. There are multiple extension options that can be used here. This is the Spring one.
 
 3. Inside the class, now create a nested static class. You may not have seen this before, but it is possible to nest a class inside another class. We will be nesting a configuration class inside our test class which can then be used as a Java Spring configuration which will replace the standard configuration of the application. We need this to create our mock beans. The code should look like this:
 
@@ -103,7 +159,7 @@ public void testCdById() {
 
 10. Run this test in the same way that you ran the previous test.
 
-11. Unfortunately, the configuration class will interfere with our later tests, so add the @Ignore to the top of each your tests, and then comment out the three `@Bean` and `@Primary` annotations in the config class.
+11. Unfortunately, the configuration class will interfere with our later tests, so add the @Disable annotation to the top of each your tests, and then comment out the `@TestConfiguration` annotation in the config class.
 
 
 ## Part 2: Add some Integration Tests
@@ -115,9 +171,9 @@ Now we will test our service and repo layer integration. Does the service layer 
 2. Add the following code annotations at the top of the class:
 
 ```
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @DataJpaTest // use an in memory database
-@SpringBootTest(classes={com.conygre.spring.boot.AppConfig.class})
+@ContextConfiguration(classes=com.conygre.spring.boot.AppConfig.class)
 @TestPropertySource(locations = "classpath:application-test.properties") // this is only needed because swagger breaks tests
 
 ```
@@ -146,12 +202,12 @@ These annotations will set up an in memory database since we don't want to test 
     CompactDiscController controller;
 ```
 
-4. To set up the database for our tests, we can use an `@Before` method which will insert a row into our in memory database. The returned primary key we can then put into a variable so it can be checked by our tests when retrieving by ID.
+4. To set up the database for our tests, we can use an `@BeforeEach` annotation on a method which will insert a row into our in memory database. The returned primary key we can then put into a variable so it can be checked by our tests when retrieving by ID.
 
 ```
 private int discId;
 
-@Before
+@BeforeEach
 public  void setupDatabaseEntryForReadOnlyTests() {
     CompactDisc disc = new CompactDisc("Abba Gold", 12.99, "Abba", 5);
     CompactDisc result = manager.persist(disc);
