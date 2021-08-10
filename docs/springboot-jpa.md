@@ -249,7 +249,7 @@ log4j.logger.com.conygre.spring=error
 The log4j message levels can be reviewed here: https://www.tutorialspoint.com/log4j/log4j_logging_levels.htm.
 
 
-## Adding Swagger Support
+## Part 5 Adding Swagger Support
 
 Finally we can add Swagger support to our API. To add Swagger we will need some additional dependencies and then configure some additional beans.
 
