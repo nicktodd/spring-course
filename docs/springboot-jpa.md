@@ -112,11 +112,10 @@ public class CompactDiscController {
 }
 ```
 
-5.	Finally, create an application class called AppConfig and annotate it with the following Spring Boot annotations:
+5.	Finally, create an application class called AppConfig and place it in the package above all your other sub-packages, ie. something like com.conygre.spring. Annotate it with the following Spring Boot annotations:
 
 ```
-@EnableAutoConfiguration
-@ComponentScan
+@SpringBootApplication
 ```
 
 6.	Add a main method to the class and in main, add the following API call:
