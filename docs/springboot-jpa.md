@@ -4,6 +4,8 @@
 
 In this exercise you will see how easy it is to build a complete end to end application using much of the technology you have covered in the previous chapters, but with much of the code and configuration no longer required.
 
+The complete solution to this exercise can be found in `Solutions/workspace/CompactDiscDaoWithRestAndBoot`.
+
 
 ## Part 1 Create a Spring Boot Application
 1.	Create a new Maven project with an artifact ID MySpringBoot and a group ID of com.conygre.spring.boot.
