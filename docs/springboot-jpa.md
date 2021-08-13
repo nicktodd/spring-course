@@ -210,7 +210,7 @@ This is for the log4j Logging libraries.
 </dependency>
 ```
 
-3. Now you can add in the log4j.properties file to your src/main/resources folder. You can use the solution project file for that.
+3. Now you can add in the log4j2.properties file to your src/main/resources folder. You can use the solution project file for that.
 
 4. To add some log messages, we could start with your controller. So open the `CompactDiscController` class and add the following instance variable:
 
@@ -231,17 +231,18 @@ This message is an info message and will only appear if your configuration file 
 6. So finally, open `src/main/resources/log4j.properties` and locate the following entry in the file:
 
 ```
-log4j.logger.com.conygre.spring=info
+logger.conygre.name=com.conygre.spring.boot
+logger.conygre.level=info
 ```
 
-This line is setting the logging level for any logs from classes in the package com.conygre.spring to be output at the level of info and above.
+The first line provides a name for the logger for the com.conygre.spring.boot package, and the second line sets the logging level to info and above.
 
 7. To test this out, run your Spring Boot application and visit the http://localhost:8080/api/compactdiscs in a browser. Once you have seen the list of CDs, return to the application console and you will see your log message.
 
 8. Now terminate the application, and in log4j.properties, change the log level to `error`.
 
 ```
-log4j.logger.com.conygre.spring=error
+logger.conygre.level=error
 ```
 
 
