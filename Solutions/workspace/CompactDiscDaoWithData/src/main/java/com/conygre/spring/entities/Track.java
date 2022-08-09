@@ -62,10 +62,10 @@ public void setCdId(int cdId) {
 //constructors
   public Track(){}
 
-  public Track(int id,  String title, CompactDisc disc){
+  public Track(int id,  String title){
     this.title=title;
     this.id = id;
-    this.disc = disc;
+
   }
   
   
