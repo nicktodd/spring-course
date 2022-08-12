@@ -63,10 +63,10 @@ public class CompactDisc implements Serializable {
 		this.id = id;
 	}
 	
-	public void addTrack(Track t) {
-		t.setDisc(this);
-		trackTitles.add(t);
-	}
+//	public void addTrack(Track t) {
+//		t.setDisc(this);
+//		trackTitles.add(t);
+//	}
 	
 	public String getArtist() {
 		return artist;
