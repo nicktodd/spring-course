@@ -38,7 +38,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(CompactDiscController.class)
 @ContextConfiguration(classes={com.conygre.spring.boot.AppConfig.class})
-//@TestPropertySource(locations = "classpath:application-test.properties") // needed in SpringBoot 2.0.x as Swagger breaks tests
+// needed in SpringBoot 2.0.x as Swagger breaks tests
+// currently on Spring 2.5.x and no longer breaking tests
+//@TestPropertySource(locations = "classpath:application-test.properties")
 public class TestCompactDiscController {
 
 
