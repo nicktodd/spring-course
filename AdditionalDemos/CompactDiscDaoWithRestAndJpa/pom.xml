@@ -9,7 +9,7 @@
 	<version>1.0.0</version>
 	<name>Spring4RestWithDataJavaConfig</name>
 	<properties>
-		<springframework.version>4.3.0.RELEASE</springframework.version>
+		<springframework.version>6.0.0</springframework.version>
 
 	</properties>
 	<dependencyManagement>
