@@ -1,10 +1,9 @@
-package com.conygre.spring.service;
+package com.conygre.spring.boot.service;
 
-import com.conygre.spring.dao.CompactDiscDAO;
-import com.conygre.spring.entities.CompactDisc;
+import com.conygre.spring.boot.dao.CompactDiscDAO;
+import com.conygre.spring.boot.entities.CompactDisc;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;

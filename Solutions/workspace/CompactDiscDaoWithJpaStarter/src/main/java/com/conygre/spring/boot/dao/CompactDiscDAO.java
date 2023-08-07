@@ -1,8 +1,8 @@
-package com.conygre.spring.dao;
+package com.conygre.spring.boot.dao;
 
 import java.util.Collection;
 
-import com.conygre.spring.entities.CompactDisc;
+import com.conygre.spring.boot.entities.CompactDisc;
 
 public interface CompactDiscDAO {
 	

@@ -75,7 +75,7 @@ We can reuse a lot of the classes we have already written, so we will begin by p
 
 2.	Copy in your Spring Data Repository interface from the Spring Data exercise.
 
-3.	Copy over your CompactDiscService class from your Spring Data exercise, and define an interface for it - renaming the class ```CompactDiscServiceImpl```, with an interface called ```CompactDiscService```.
+3.	Copy over your CompactDiscService class from your Spring Data exercise, and define an interface for it - renaming the class ```CompactDiscServiceImpl```, with an interface called ```CompactDiscService```. If there are any errors relating to Log4J, comment any affected statements for now. Later in the lab you will see how to add loggins support.
 
 ```
 public interface CompactDiscService {

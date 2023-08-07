@@ -1,4 +1,4 @@
-package com.conygre.spring.configuration;
+package com.conygre.spring.boot.configuration;
 
 import java.util.Properties;
 

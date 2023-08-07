@@ -69,6 +69,10 @@ Now we are ready to write some tests!!
 
 First we will create some unit tests. We will test our controller class. Now the controller requires a Service layer which also requires a Repository layer. We don't want to test those two layers so they need to be mocked.
 
+[!WARNING]  
+When your IDE prompts you regarding imports for JUnit and Hamcrest, make sure you choose org.junit.jupiter.* and org.hamcrest.*. Do NOT choose org.junit as this is the JUnit 4 libraries and will not work correctly.
+
+
 1. In `src/test/java`, create a new class called `com.conygre.spring.boot.controller.TestCompactDiscControllerUnitTest`.
 
 2. Annotate the class with the `@ExtendWith(SpringExtension.class)` annotation. This tells the test engine to use the SpringExtension. There are multiple extension options that can be used here. This is the Spring one.
@@ -82,7 +86,7 @@ protected static class Config {
 }
 ```
 
-4. Within the class, you will be adding beans as you would in a standard Spring configuration class. So add the following bean that will mock the CompactDiscRepository.
+4. Within the class, you will be adding beans as you would in a standard Spring configuration class. So add the following bean that will mock the com.conygre.spring.boot.repo.CompactDiscRepository.
 
 ```
  @Bean
@@ -147,7 +151,7 @@ This test will confirm that the discs coming back from the controller has a coun
 
 8. To run the test, click on the green arrow next to the test in your IDE (both IntelliJ and VisualStudio Code will have this).
 
-9. Now add another test to check that we get one CD back if we ask for CD number 1.
+9. Now add another test to check that we get one CD back if we ask for CD number 1. Note that you may have named your Controller method with a slightly different name.
 
 ```
 @Test
@@ -159,7 +163,7 @@ public void testCdById() {
 
 10. Run this test in the same way that you ran the previous test.
 
-11. Unfortunately, the configuration class will interfere with our later tests, so add the @Disable annotation to the top of each your tests, and then comment out the `@TestConfiguration` annotation in the config class.
+11. Unfortunately, the configuration class will interfere with our later tests, so add the @Disabled annotation to the top of each your tests, and then comment out the `@TestConfiguration` annotation in the config class.
 
 
 ## Part 2: Add some Integration Tests
@@ -216,9 +220,11 @@ public  void setupDatabaseEntryForReadOnlyTests() {
 }
 ```
 
+5. Before you run the test there is one additional task, which is to go to the `com.conygre.sprint.boot.AppConfig` class, and add the `@ComponentScan` annotation. This is required so that your tests create your components from the @Service/@RestController annnotations.
+
 You are now able to add your tests, as you add each test, ensure that it passes before moving on.
 
-5. Now everything is set, and we can now test our application. First, let's test that our service layer can successfully retrieve a CompactDisc by ID.
+6. Now everything is set, and we can now test our application. First, let's test that our service layer can successfully retrieve a CompactDisc by ID.
 
 ```
 @Test
@@ -229,7 +235,7 @@ public void canRetrieveCDByArtist() {
 }
 ```
 
-6. Now let's test that we can retrieve all of the CDs from the database:
+7. Now let's test that we can retrieve all of the CDs from the database:
 
 ```
 @Test
@@ -241,7 +247,7 @@ public void compactDiscServiceCanReturnACatalog() {
 }
 ```
 
-7. Finally, let's see if the controller is successfully interacting with the service layer.
+8. Finally, let's see if the controller is successfully interacting with the service layer.
 
 ```
 @Test

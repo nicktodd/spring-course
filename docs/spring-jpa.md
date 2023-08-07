@@ -10,13 +10,19 @@ You will also use Java configuration to create this project.
 
 ## Create the new DAO
 
-1. In your preferred IDE, open the `CompactDiscDAOWithJPAStarter` project which is located in the Solutions directory, and open the Java class called `com.conygre.spring.dao.SpringJPACompactDiscDAO` that implements the `CompactDiscDAO` interface. Implement empty versions of the various methods.
+1. In your preferred IDE, open the `CompactDiscDAOWithJPAStarter` project which is located in the Solutions directory.
+
+2. Open the Java class called `com.conygre.spring.boot.dao.SpringJPACompactDiscDAO`.
+
+3. Note the commmented out interface implementation. This is so the project compiles before you complete the exercise. Now uncomment the implements and sort out the {}. 
+
+4. In the `CompactDiscDAO` interface. Implement empty versions of the various methods.
    
-2.	Declare a reference of type `EntityManager` with the name `em`.
+5.	Declare a reference of type `EntityManager` with the name `em`.
 
-3.	Annotate the reference as a `@PersistenceContext`. This will allow Spring to inject it.
+6.	Annotate the reference as a `@PersistenceContext`. This will allow Spring to inject it.
 
-4.	Within each method, use the injected EntityManager to carry out the required function. For example, the `getAllDiscs()` method is shown below:
+7.	Within each method, use the injected EntityManager to carry out the required function. For example, the `getAllDiscs()` method is shown below:
 
 ```
 	public Collection<CompactDisc> getAllDiscs() {
@@ -32,7 +38,7 @@ You will also use Java configuration to create this project.
 
     1.	`@Configuration` which will make it a configuration class
     2.	`@Import(JpaConfiguration.class)` which will cause it to import the JPA configuration class you will be completing next.
-    3.	`@ComponentScan(basePackages=”com.conygre.spring”)` which will cause it to scan in your DAO and Service beans.
+    3.	`@ComponentScan(basePackages="com.conygre.spring.boot")` which will cause it to scan in your DAO and Service beans.
 
 2.	Close `AppConfig.java`, and now open `JpaConfiguration.java` located in the same package.
 

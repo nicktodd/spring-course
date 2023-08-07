@@ -4,7 +4,7 @@
 // but this would mean a substantial overhead in remote reference calls as all the data
 // is accessed by the pages
 
-package com.conygre.spring.entities;
+package com.conygre.spring.boot.entities;
 // this is a regular JavaBean that instances of will be passed
 // back to the web application clients
 // the alternative is to pass entity bean references back for the CDs,

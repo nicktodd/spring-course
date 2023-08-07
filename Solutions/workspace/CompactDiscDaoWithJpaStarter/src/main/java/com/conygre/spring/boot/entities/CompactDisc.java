@@ -1,6 +1,6 @@
 // This entity class uses annotations instead of the mapping XML file
 
-package com.conygre.spring.entities;
+package com.conygre.spring.boot.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
