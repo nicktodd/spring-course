@@ -152,9 +152,9 @@ The code is largely complete now, but in order for the service bean to work, Spr
 
 ### Configuring Our Transactional Requirements
 
-1.	Open the `SpringJPACompactDiscDAO` class and add the required annotation to specify that all methods support a transaction.
+1.	Open the `SpringJPACompactDiscDAO` class and add the required annotation to specify that all methods require a transaction.
 
-2.	Open the `CompactDiscService` class and add an annotation to specify that all methods require a transaction.
+2.	Open the `CompactDiscService` class and add an annotation to specify that all methods require a new transaction.
 
 
 ## Creating a Test Harness
