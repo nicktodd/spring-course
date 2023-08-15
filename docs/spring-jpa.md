@@ -16,7 +16,7 @@ You will also use Java configuration to create this project.
 
 3. Note the commmented out interface implementation. This is so the project compiles before you complete the exercise. Now uncomment the implements and sort out the {}. 
 
-4. In the `CompactDiscDAO` interface. Implement empty versions of the various methods.
+4. In the `SpringJPACompactDiscDAO` class, implement empty versions of the various methods.
    
 5.	Declare a reference of type `EntityManager` with the name `em`.
 
