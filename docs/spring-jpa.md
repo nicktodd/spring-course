@@ -78,7 +78,7 @@ entityManagerFactory() throws NamingException {
 new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setDataSource(dataSource());
 		factoryBean.setPackagesToScan(
-new String[] { "com.conygre.spring.entities" });
+new String[] { "com.conygre.spring.boot.entities" });
 		factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
 		factoryBean.setJpaProperties(jpaProperties());
 		return factoryBean;

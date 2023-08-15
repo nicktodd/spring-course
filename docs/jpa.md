@@ -95,13 +95,13 @@ The following instructions involve the command prompt. You can also use MySQL Wo
 
 2.	Type `mysql  –u root -p` and press enter.
 
-3.	Enter the database password, which if you are using the course, will be `c0nygre`.
+3.	Enter the database password, which if you are using the course, will be ```c0nygre```.
 
-4.	To run the script, enter ‘\. createTables.sql’. See Figure 1.
+4.	To run the script, enter ```\. createTables.sql```. .
 
 ![Running the MySQL Script](./images/mysql-script.png)
 
-5.	To confirm the tables have been created, in the console, type select * from compact_discs; to see the listing, and then select * from tracks; to see the second listing.
+5.	To confirm the tables have been created, in the console, type ```select * from compact_discs;``` to see the listing, and then select * from tracks; to see the second listing.
 
 ## Create a Mapped Entity Class
 
