@@ -161,7 +161,7 @@ The persistence.xml file needs to be placed into the META-INF directory of src/m
 
 When you run it, the output will be some warnings about Log4J and then (hopefully!) you’re working output. Log4J significantly makes debugging Hibernate applications a great deal easier, so you will now add a Log4J configuration file into the application.
 
-4.	Using Windows Explorer, copy <LAB_HOME>\log4j\log4j.properties into your src\main\java folder and rerun the application. You will now see far more detailed output, and if your application didn’t work, you will have a much clearer idea of why when you read the logging messages.
+4.	Using Windows Explorer, copy <LAB_HOME>\log4j\log4j.properties into your src\main\resources folder and rerun the application. You will now see far more detailed output, and if your application didn’t work, you will have a much clearer idea of why when you read the logging messages.
 
 5.	If you have time, experiment by adding your own new albums.
 
