@@ -11,7 +11,7 @@
 	<properties>
 		<springframework.version>5.1.5.RELEASE</springframework.version> <!-- 4.3.0.RELEASE -->
 		<hibernate.version>5.4.2.Final</hibernate.version> <!-- 4.3.10.Final -->
-		<mysql.connector.version>8.0.22</mysql.connector.version>
+		<mysql.connector.version>8.0.28</mysql.connector.version>
 	</properties>
 
 	<dependencies>
