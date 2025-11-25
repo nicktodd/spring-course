@@ -9,7 +9,7 @@ services:
      ports:
        - "3306:3306"
      volumes:
-           - /docker/cds/mysql:/var/lib/mysql
+           - cds-mysql-data:/var/lib/mysql
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: secret123
@@ -27,3 +27,6 @@ services:
      ports:
        - "8080:8080"
      restart: always
+
+volumes:
+  cds-mysql-data:
