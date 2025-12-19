@@ -8,11 +8,7 @@
 
 [Core Spring](GettingStartedWithSpring.md)
 
-[Working with Spring and JPA](spring-jpa.md)
-
-[Working with Spring Data and JPA](springdata-jpa.md)
-
-[Aspect Oriented Programming](aspects.md)
+[Working with SpringBoot and JPA](jpa-boot.md)
 
 [Spring Boot with JPA, REST API and Maven](springboot-jpa.md)
 

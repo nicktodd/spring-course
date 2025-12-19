@@ -1,25 +1,17 @@
 package com.conygre.spring.boot.rest;
 
-import com.conygre.spring.boot.AppConfig;
 import com.conygre.spring.boot.entities.CompactDisc;
 import com.conygre.spring.boot.services.CompactDiscService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Arrays;
 import java.util.List;
@@ -38,9 +30,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(CompactDiscController.class)
 @ContextConfiguration(classes={com.conygre.spring.boot.AppConfig.class})
-// needed in SpringBoot 2.0.x as Swagger breaks tests
-// currently on Spring 2.5.x and no longer breaking tests
-//@TestPropertySource(locations = "classpath:application-test.properties")
 public class TestCompactDiscController {
 
 

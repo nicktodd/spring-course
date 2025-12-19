@@ -1,10 +1,10 @@
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
 import com.conygre.training.entities.*;
 
@@ -31,7 +31,7 @@ public class TestCompactDiscs {
 		//disc.setTitle("Mylo Xyloto");
 
 
-		Query allSpiceGirlsTracks = em.createQuery("select t.title from Track t where t.cdId  = 16");
+		TypedQuery<String> allSpiceGirlsTracks = em.createQuery("select t.title from Track t where t.cdId  = 16",String.class);
 		allSpiceGirlsTracks.getResultList().forEach(System.out::println);
 		tx.commit();
 		em.close();

@@ -35,7 +35,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 @ExtendWith(SpringExtension.class)
 @DataJpaTest // use an in memory database
 @ContextConfiguration(classes=AppConfig.class)
-@TestPropertySource(locations = "classpath:application-test.properties") // this is only needed because swagger breaks tests
 
 public class TestCDRepository {
 

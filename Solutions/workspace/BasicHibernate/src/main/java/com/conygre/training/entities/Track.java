@@ -6,7 +6,7 @@
 
 package com.conygre.training.entities;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 
 import java.io.Serializable;

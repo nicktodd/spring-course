@@ -11,16 +11,16 @@ To being with, you will need to create a Maven project. How this is done depends
 
 1. Click the `File` menu, and then click `New Project`.
 
-2. At the `New Project` dialog, select `Maven` and then for the Project SDK, select a JDK 8. 
-If no JDK 8 is available, select the option to download a JDK, and then select the JDK type of `AdoptOpenJDK`, and then select JDK 1.8.x.
+2. At the `New Project` dialog, select `Maven` and then for the Project SDK, select a JDK 21. 
+If no JDK is available, select the option to download a JDK, and then select the JDK type to be Microsoft OpenJDK21.
 
-3. Once the JDK is selected, click `Next`. 
+1. Once the JDK is selected, click `Next`. 
 
-4. At the `New Project` dialog, enter the project name of `BasicHibernate`.
+2. At the `New Project` dialog, enter the project name of `BasicHibernate`.
 
-5. Choose a suitable location for your project. It doesn't particularly matter where you put it.
+3. Choose a suitable location for your project. It doesn't particularly matter where you put it.
 
-6. Expand the `Artifact Coordinates` section and enter the following:
+4. Expand the `Artifact Coordinates` section and enter the following:
 
 `Group ID`: com.conygre.training
 
@@ -31,77 +31,91 @@ Leave the `Version` as it is.
 7. Click `Finish`.
 
 
-### Eclipse
-
-1. In the Project Explorer, right click and then click New and then click Other.
-
-2. At the New dialog, expand Maven and then select Maven Project. Click Next.
-
-3. At the New Maven Project dialog, select Create a simple project, and click Next.
-4. At the New Maven Project dialog, enter the following information:
-
-`Group ID`: com.conygre.training
-
-`Artifact ID`: Basichibernate
-
-`Name`:	BasicHibernate
-
-5.	Click `Finish`.
 
 ## Configure the Dependencies
 
-Regardless of your IDE, now you can do the following:
 
-1.	Open the pom.xml file in your editor (in Eclipse, you will need to click the Source tab).
+1.	Open the pom.xml file in your editor.
 
-2. 	Add the following dependencies to your project (you can paste them from this document). They go directly underneath the `name` element. If you do not have a `name` element, then after the `version` element.
+2. 	Add the following dependencies to your project (you can paste them from this document). They go directly underneath the `name` element. If you do not have a `name` element, then after the `version` element. Also, add in the Java version you plan to build with. Use a Java 21 version. 
+
+```xml
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.conygre.training</groupId>
+	<artifactId>basichibernate</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>BasicHibernate</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.20.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.20.0</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.22</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>6.3.0.Final</version>
+		</dependency>
+	</dependencies>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.10.1</version>
+					<configuration>
+						<source>21</source>
+						<target>21</target>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+
+	</build>
+</project>
 
 ```
-<dependencies>
-	<!-- log4j required to allow the log file to work -->
-	<dependency>
-		<groupId>log4j</groupId>
-		<artifactId>log4j</artifactId>
-		<version>1.2.17</version>
-	</dependency>
 
-	<!-- MySQL JDBC connector -->
-	<dependency>
-		<groupId>mysql</groupId>
-		<artifactId>mysql-connector-java</artifactId>
-		<version>8.0.22</version>
-	</dependency>
+Also, in the pom.xml file, add the Java version you plan to use. So for example:
 
-	<dependency>
-		<groupId>org.hibernate</groupId>
-		<artifactId>hibernate-core</artifactId>
-		<version>5.4.2.Final</version>
-	</dependency>
-</dependencies>
-```
+
 
 3. Save the pom.xml. 
 
-4. Update the project to download the dependencies. Your IDE will prompt you if you want to download the dependencies, select Yes to this request. In IntelliJ it is a small `M` button that appears in the top right of the pom.xml. In Eclipse, it appears as a prompt at the bottom right.
+4. Update the project to download the dependencies. Your IDE will prompt you if you want to download the dependencies, select Yes to this request. In IntelliJ it is a small `M` button that appears in the top right of the pom.xml. 
 
 
 ## Create the Database Tables
 
-Note that you may not need to complete this step as depending upon network capability, we may have provided a database in the cloud or your VM in the cloud might have it set up already.
 
-The following instructions involve the command prompt. You can also use MySQL Workbench if you prefer.
+The following instructions use MySQL Workbench 8. You can also use the command line if you prefer.
 
-1.	MySQL should be installed and running on your machine. The script for creating the Compact Disc tables can be found in <LAB_HOME>labs\mysql \createTables.sql, so launch a command prompt in this folder.
+1.	MySQL should be installed and running on your machine. Launch MySQL Workbench 8.
 
-2.	Type `mysql  –u root -p` and press enter.
+2.	Connect to your MySQL server by clicking on the connection (typically named "Local instance MySQL"). If prompted, enter the database password, which if you are using the course, will be the same as that for your virtual machine.
 
-3.	Enter the database password, which if you are using the course, will be ```c0nygre```.
+3.	Once connected, open the SQL script by clicking `File` > `Open SQL Script` from the menu, and navigate to `<LAB_HOME>labs\mysql\createTables.sql`.
 
-4.	To run the script, enter ```\. createTables.sql```. .
+4.	To run the script, click the lightning bolt icon (Execute) in the toolbar, or press `Ctrl+Shift+Enter` to execute the entire script.
 
 ![Running the MySQL Script](./images/mysql-script.png)
 
-5.	To confirm the tables have been created, in the console, type ```select * from compact_discs;``` to see the listing, and then select * from tracks; to see the second listing.
+5.	To confirm the tables have been created, in a new query tab, type ```SELECT * FROM compact_discs;``` and click the lightning bolt icon to see the listing. Then type ```SELECT * FROM tracks;``` and execute to see the second listing.
 
 ## Create a Mapped Entity Class
 
@@ -121,7 +135,7 @@ The following instructions involve the command prompt. You can also use MySQL Wo
 | price | Double |
 
 
-4.	Add the annotation to specify that the class is an entity, and then the annotation specifying the table that you are mapping it to.
+4.	Add the annotation (jakarta.persistence.Entity) to specify that the class is an entity, and then the annotation specifying the table that you are mapping it to.
 
 5.	Ensure that the class now implements the Serializable interface.
 
@@ -136,7 +150,7 @@ The persistence.xml file needs to be placed into the META-INF directory of src/m
 
 2.	Set the name of the persistent unit to be conygrePersistentUnit.
 
-3.	Set up the database connection details as specified in the comments in the file.
+3. The file has already been set up to successfully connect to your database. Just check the password as it may be different!
 
 
 
@@ -157,11 +171,11 @@ The persistence.xml file needs to be placed into the META-INF directory of src/m
     5.	Commit the transaction and close EntityManager.
 
 
-3.	Test your application.
+3.	Test your application by running the code. You should see some output from the database.
 
-When you run it, the output will be some warnings about Log4J and then (hopefully!) you’re working output. Log4J significantly makes debugging Hibernate applications a great deal easier, so you will now add a Log4J configuration file into the application.
 
-4.	Using Windows Explorer, copy <LAB_HOME>\log4j\log4j.properties into your src\main\java folder and rerun the application. You will now see far more detailed output, and if your application didn’t work, you will have a much clearer idea of why when you read the logging messages.
+
+4.	Using Windows Explorer, copy <LAB_HOME>\log4j\log4j2.xml into your src\main\resources folder and rerun the application. You will now see far more detailed output, and if your application didn’t work, you will have a much clearer idea of why when you read the logging messages.
 
 5.	If you have time, experiment by adding your own new albums.
 

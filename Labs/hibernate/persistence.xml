@@ -1,23 +1,25 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
-   version="1.0">
-   <persistence-unit name="SET NAME HERE" transaction-type="RESOURCE_LOCAL">
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+   <persistence-unit name="conygrePersistentUnit" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-
+    <!--  only entities marked as @Cacheable will be cached -->
+<!--      <shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode> -->
       <properties>
-         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
-        
-         <property name="hibernate.show.sql" value="true"/>
-         <property name="hibernate.format.sql" value="true"/>
-         
-         
-	<!-- PROVIDE THE URL, USERNAME, DRIVER, and PASSWORD as properties
-		The URL is jdbc:mysql://localhost:3306/conygre?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC, 
-      the driver is com.mysql.cj.jdbc.Driver
-	 the user is root and the password is c0nygre
- 	-->
-         
-      </properties>
+      
+      
+         <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+         <!--<property name="hibernate.hbm2ddl.auto" value="create-drop"/>-->
+         <property name="hibernate.show_sql" value="true"/>
+         <property name="hibernate.format_sql" value="true"/>
+<!--          <property name="hibernate.hbm2ddl.auto" value="update"/> -->
+          <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+          <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/conygre?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
+          <property name="jakarta.persistence.jdbc.user" value="root"/>
+          <property name="jakarta.persistence.jdbc.password" value="c0nygre"/>
+		
+
+  </properties>
    </persistence-unit>
 </persistence>

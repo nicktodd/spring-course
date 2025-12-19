@@ -6,15 +6,13 @@ services:
        context: .
        dockerfile: Dockerfile-mysql
      image: cd/mysql:1.0.0
-     ports:
-       - "3306:3306"
-     volumes:
-           - cds-mysql-data:/var/lib/mysql
+     # Add back in if you want to connect from sql workbench on host
+     #ports:
+     #  - "3306:3306"
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: secret123
-     command: --explicit_defaults_for_timestamp
-
+       MYSQL_DATABASE: conygre
 
    cd:
      container_name: cd-server
@@ -22,11 +20,8 @@ services:
        context: .
        dockerfile: Dockerfile-cd-server
      image: cd/cd-server:1.0.0
-     links:
-       - cddb:cddb
+     depends_on:
+       - cddb
      ports:
        - "8080:8080"
      restart: always
-
-volumes:
-  cds-mysql-data:
