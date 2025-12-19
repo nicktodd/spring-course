@@ -3,11 +3,7 @@
 
 In this exercise you will add some tests to your project. The tests will be a mixture of unit tests, integration tests, and some functional tests.
 
-## Locate a Project
-You will need a project to add some tests into. A good starting point would be any project you have that has a working REST API with a database at the back end. To begin with, we suggest you make a copy of the the solution project CompactDiscDaoWithRestAndBoot, and delete everything in the src/test/java and src/test/resources folders. That can then be your starting point, and the original project has the solution code in it!
-
-Open your new project in your preferred IDE such as IntelliJ.
-
+You will be adding tests to the project that you created in the previous exercise.
 
 ## Preparation: Review / Add in the Dependencies
 If you are using your solution to the previous exercise, you will need to add the following dependencies to your pom.xml file. If you are using the solution, you can review the following entries that are already in the pom.xml file.

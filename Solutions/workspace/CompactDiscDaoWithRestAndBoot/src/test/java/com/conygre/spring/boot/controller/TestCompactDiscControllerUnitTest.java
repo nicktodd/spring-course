@@ -1,17 +1,14 @@
 package com.conygre.spring.boot.controller;
 
 import com.conygre.spring.boot.entities.CompactDisc;
-import com.conygre.spring.boot.repos.CompactDiscRepository;
 import com.conygre.spring.boot.rest.CompactDiscController;
 import com.conygre.spring.boot.services.CompactDiscService;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -29,7 +26,6 @@ import static org.mockito.Mockito.when;
 
 
 
-/* This test requires a specific version of Mockito in the pom when using Java 11 */
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes=TestCompactDiscControllerUnitTest.Config.class)
 public class TestCompactDiscControllerUnitTest {
