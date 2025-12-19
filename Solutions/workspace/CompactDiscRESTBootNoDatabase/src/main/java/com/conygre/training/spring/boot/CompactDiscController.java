@@ -1,31 +1,31 @@
 package com.conygre.training.spring.boot;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.info.Contact;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+@SpringBootApplication
 @RestController
 @RequestMapping("compactdiscs")
-@EnableAutoConfiguration
-
-@EnableSwagger2
 @CrossOrigin
+@OpenAPIDefinition(
+    info = @Info(
+        title = "Album REST API with Swagger",
+        description = "This API allows you to interact with albums. It is a CRUD API",
+        contact = @Contact(name = "Nick Todd")
+    )
+)
 public class CompactDiscController  {
 
 	
@@ -42,27 +42,25 @@ public class CompactDiscController  {
 		library.put(1, new CompactDisc("Gold", 12.99, "Abba", 12, 1));
 		library.put(2, new CompactDisc("Spice World", 4.99, "Spice Girls", 9, 2));
 		library.put(3, new CompactDisc("Money for Nothing", 7.99, "Dire Straits", 13, 3));
-		library.put(4, new CompactDisc("True", 5.99, "Spandau Ballet", 10, 4));
-		library.put(5, new CompactDisc("Justin", 4.99, "Justin Bieber", 10, 5));
+		library.put(4, new CompactDisc("True", 5.99, "Spandau Ballet", 10, 4));		library.put(5, new CompactDisc("Justin", 4.99, "Justin Bieber", 10, 5));
 	}
 
 
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping
 	public Collection<CompactDisc> getLibrary() {
 		return library.values();
 	}
 
 	
 
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	@GetMapping("/{id}")
 	public CompactDisc getCompactDiscById(@PathVariable("id") int id) {
-		return library.get(id);
-	}
+		return library.get(id);	}
 
 
 
-	@RequestMapping(value="/with404/{id}", method=RequestMethod.GET)
+	@GetMapping("/with404/{id}")
 	public ResponseEntity<CompactDisc> getCompactDiscByIdHandling404(@PathVariable("id") int id) {
 		CompactDisc compactDiscToReturn = library.get(id);
 
@@ -71,58 +69,27 @@ public class CompactDiscController  {
 		}
 		else {
 			return new ResponseEntity<CompactDisc>(compactDiscToReturn, HttpStatus.OK);
-		}
-	}
+		}	}
 
 
 
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
+	@DeleteMapping("/{id}")
 	public void deleteCompactDiscById(@PathVariable("id") int id) {
-		library.remove(id);
-	}
+		library.remove(id);	}
 
 
-	@RequestMapping(method=RequestMethod.POST,
-			consumes="application/json")
+	@PostMapping(consumes="application/json")
 	public void addCompactDisc(@RequestBody CompactDisc p) {
-		library.put(p.getId(), p);
-	}
+		library.put(p.getId(), p);	}
 
 	
-	@RequestMapping(method=RequestMethod.PUT,
-			consumes="application/json")
+	@PutMapping(consumes="application/json")
 	public void updateCompactDisc(@RequestBody CompactDisc p) {
 		if (library.containsKey(p.getId())) {
-			library.put(p.getId(), p);
-		}
+			library.put(p.getId(), p);		}
 
 	}
 	
-	 @Bean
-	    public Docket newsApi() {
-	        return new Docket(DocumentationType.SWAGGER_2)
-	                .groupName("compactdiscs")
-	                .apiInfo(apiInfo())
-	                .select()
-	                .paths(PathSelectors.any())
-	                .build();
-	    }
-	     
-	    private ApiInfo apiInfo() {
-	        return new ApiInfoBuilder()
-	                .title("Album REST API with Swagger")
-	                .description("This API allows you to interact with albums. It is a CRUD API")
-	                //.termsOfServiceUrl("http://www.conygre.com")
-	                .contact("Nick Todd")
-	                //.license("Apache License Version 2.0")
-	                //.licenseUrl("https://github.com/IBM-Bluemix/news-aggregator/blob/master/LICENSE")
-	                //.version("2.0")
-	                .build();
-	    }
-	
-	    
-
-
 
 }
 class CompactDisc implements Serializable {
