@@ -1,6 +1,6 @@
 # Spring Course Labs
 
-# Exercises for the Spring with MySQL and Maven Pathway
+# Pune January 2026 Exercises for the Spring with MySQL and Maven Pathway
 
 [JPA with Hibernate](jpa.md)
 
@@ -10,7 +10,7 @@
 
 [Working with SpringBoot and JPA](jpa-boot.md)
 
-[Spring Boot with JPA, REST API and Maven](springboot-jpa.md)
+[Adding the REST API](springboot-jpa.md)
 
 [Testing your Spring Boot Application](AddingSomeTests.md)
 
