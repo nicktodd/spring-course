@@ -1,9 +1,6 @@
 FROM mysql:8.0
-
 # Add the SQL script to create database, tables, and populate sample data
-ADD sql/createTables.sql /docker-entrypoint-initdb.d/
-
+COPY sql/createTables.sql /docker-entrypoint-initdb.d/
 # Configure MySQL authentication plugin for compatibility
 ENV MYSQL_AUTHENTICATION_PLUGIN=mysql_native_password
-
 EXPOSE 3306

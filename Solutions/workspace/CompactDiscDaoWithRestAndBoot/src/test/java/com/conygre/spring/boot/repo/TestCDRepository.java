@@ -27,8 +27,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 @ExtendWith(SpringExtension.class)
 @DataJpaTest // use an in memory database
-@ContextConfiguration(classes=AppConfig.class)
-
+//@ContextConfiguration(classes=AppConfig.class)
 public class TestCDRepository {
 
     @Autowired
