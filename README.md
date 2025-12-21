@@ -1,6 +1,6 @@
 # Spring Course Labs
 
-# Pune January 2026 Exercises for the Spring with MySQL and Maven Pathway
+# January 2026 Exercises for the Spring with MySQL and Maven Pathway
 
 [JPA with Hibernate](docs/jpa.md)
 
