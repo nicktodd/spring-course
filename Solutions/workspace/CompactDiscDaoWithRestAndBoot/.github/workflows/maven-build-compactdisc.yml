@@ -1,0 +1,53 @@
+name: Build CompactDiscDaoWithRestAndBoot
+
+on:
+  push:
+    paths:
+      - 'CompactDiscDaoWithRestAndBoot/**'
+  pull_request:
+    paths:
+      - 'CompactDiscDaoWithRestAndBoot/**'
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    name: Build Maven module
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v4
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Cache local Maven repository
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/CompactDiscDaoWithRestAndBoot/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-m2-
+
+      - name: Build the CompactDiscDaoWithRestAndBoot module
+        working-directory: CompactDiscDaoWithRestAndBoot
+        run: mvn -B -DskipTests package
+
+      - name: Prepare output directory and copy artifact
+        run: |
+          mkdir -p build-artifacts/CompactDiscDaoWithRestAndBoot
+          # Copy any generated JAR(s) from module's target into the artifacts folder
+          cp CompactDiscDaoWithRestAndBoot/target/*.jar build-artifacts/CompactDiscDaoWithRestAndBoot/ || true
+
+      - name: List artifacts (for debug)
+        run: ls -la build-artifacts || true
+
+      - name: Upload built artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: CompactDiscDaoWithRestAndBoot
+          path: build-artifacts/CompactDiscDaoWithRestAndBoot/*.jar
+
