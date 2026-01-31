@@ -1,31 +1,127 @@
-drop database conygre;
+DROP DATABASE IF EXISTS conygre;
 
 CREATE DATABASE IF NOT EXISTS conygre;
-use conygre;
-create table compact_discs (id int primary key auto_increment,title varchar (50),artist varchar(30),tracks int,price double);
+USE conygre;
 
-CREATE TABLE tracks (id int primary key auto_increment,
-		     cd_id int not null,
-                    title varchar(50),
-                    FOREIGN KEY (cd_id) REFERENCES compact_discs(id)
-                    
+CREATE TABLE compact_discs (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(50),
+  artist VARCHAR(30),
+  tracks INT,
+  price DOUBLE
 );
 
+CREATE TABLE tracks (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  cd_id INT NOT NULL,
+  title VARCHAR(50),
+  FOREIGN KEY (cd_id) REFERENCES compact_discs(id)
+);
 
-insert into compact_discs values(9,'Is This It','The Strokes',11,13.99);
-insert into compact_discs values(10,'Just Enough Education to Perform','Stereophonics',11,10.99);
-insert into compact_discs values(11,'Parachutes','Coldplay',10,11.99);
-insert into compact_discs values(12,'White Ladder','David Gray',10,9.99);
-insert into compact_discs values(13,'Greatest Hits','Penelope',14,14.99);
-insert into compact_discs values(14,'Echo Park','Feeder',12,13.99);
-insert into compact_discs values(15,'Mezzanine','Massive Attack',11,12.99);
-insert into compact_discs values(16,'Spice World','Spice Girls',11,4.99);
+-- ======= 50 ALBUMS =======
 
+INSERT INTO compact_discs VALUES
+(9,'Is This It','The Strokes',2,13.99),
+(10,'Just Enough Education to Perform','Stereophonics',2,10.99),
+(11,'Parachutes','Coldplay',2,11.99),
+(12,'White Ladder','David Gray',2,9.99),
+(13,'Greatest Hits','Penelope',2,14.99),
+(14,'Echo Park','Feeder',2,13.99),
+(15,'Mezzanine','Massive Attack',2,12.99),
+(16,'Spice World','Spice Girls',2,4.99),
+(17,'OK Computer','Radiohead',2,12.99),
+(18,'The Bends','Radiohead',2,11.99),
+(19,'(What’s the Story) Morning Glory?','Oasis',2,12.99),
+(20,'Definitely Maybe','Oasis',2,11.99),
+(21,'Urban Hymns','The Verve',2,12.49),
+(22,'Parklife','Blur',2,11.49),
+(23,'Modern Life Is Rubbish','Blur',2,10.99),
+(24,'Blue Lines','Massive Attack',2,11.99),
+(25,'Dummy','Portishead',2,12.99),
+(26,'Protective Music','Massive Attack',2,10.99),
+(27,'Hopes and Fears','Keane',2,11.49),
+(28,'A Rush of Blood to the Head','Coldplay',2,12.99),
+(29,'X&Y','Coldplay',2,12.49),
+(30,'Back to Black','Amy Winehouse',2,13.49),
+(31,'The Queen Is Dead','The Smiths',2,11.99),
+(32,'Hatful of Hollow','The Smiths',2,10.99),
+(33,'The Stone Roses','The Stone Roses',2,12.99),
+(34,'Screamadelica','Primal Scream',2,11.99),
+(35,'Different Class','Pulp',2,12.49),
+(36,'This Is Hardcore','Pulp',2,11.49),
+(37,'Life Thru a Lens','Robbie Williams',2,9.99),
+(38,'I’ve Been Expecting You','Robbie Williams',2,10.49),
+(39,'Destination Anywhere','Jon Bon Jovi',2,10.99),
+(40,'The Man Who','Travis',2,11.49),
+(41,'The Invisible Band','Travis',2,11.99),
+(42,'Showbiz','Muse',2,11.99),
+(43,'Origin of Symmetry','Muse',2,12.99),
+(44,'Absolution','Muse',2,12.99),
+(45,'Hot Fuss','The Killers',2,11.99),
+(46,'Sam’s Town','The Killers',2,12.49),
+(47,'Whatever People Say I Am','Arctic Monkeys',2,12.99),
+(48,'Favourite Worst Nightmare','Arctic Monkeys',2,12.99),
+(49,'The Dark Side of the Moon','Pink Floyd',2,13.99),
+(50,'Wish You Were Here','Pink Floyd',2,13.49),
+(51,'Brothers in Arms','Dire Straits',2,12.99),
+(52,'Making Movies','Dire Straits',2,11.99),
+(53,'Tango in the Night','Fleetwood Mac',2,11.49),
+(54,'Rumours','Fleetwood Mac',2,12.99),
+(55,'Led Zeppelin IV','Led Zeppelin',2,12.99),
+(56,'Hunky Dory','David Bowie',2,11.99),
+(57,'Heroes','David Bowie',2,11.99),
+(58,'Grace','Jeff Buckley',2,12.99);
 
-use conygre; 
+-- ======= TRACKS (2 PER ALBUM = 100 TRACKS) =======
 
-
-insert into tracks values (1, 16, 'Mama');
-insert into tracks values (2, 16, 'Wannabe');
-insert into tracks values (3, 16, 'Spice up your life');
-
+INSERT INTO tracks (cd_id, title) VALUES
+(9,'Is This It'),(9,'Last Nite'),
+(10,'Dakota'),(10,'Mr Writer'),
+(11,'Yellow'),(11,'Shiver'),
+(12,'Babylon'),(12,'Sail Away'),
+(13,'Best of Penelope'),(13,'Summer Song'),
+(14,'Buck Rogers'),(14,'Just a Day'),
+(15,'Teardrop'),(15,'Angel'),
+(16,'Mama'),(16,'Wannabe'),
+(17,'Paranoid Android'),(17,'Karma Police'),
+(18,'High and Dry'),(18,'Fake Plastic Trees'),
+(19,'Wonderwall'),(19,'Don’t Look Back in Anger'),
+(20,'Live Forever'),(20,'Supersonic'),
+(21,'Bitter Sweet Symphony'),(21,'The Drugs Don’t Work'),
+(22,'Girls & Boys'),(22,'Parklife'),
+(23,'For Tomorrow'),(23,'Chemical World'),
+(24,'Unfinished Sympathy'),(24,'Safe From Harm'),
+(25,'Glory Box'),(25,'Roads'),
+(26,'Protection'),(26,'Karmacoma'),
+(27,'Somewhere Only We Know'),(27,'Everybody’s Changing'),
+(28,'Clocks'),(28,'The Scientist'),
+(29,'Fix You'),(29,'Speed of Sound'),
+(30,'Rehab'),(30,'Back to Black'),
+(31,'There Is a Light'),(31,'Bigmouth Strikes Again'),
+(32,'How Soon Is Now?'),(32,'Heaven Knows I’m Miserable Now'),
+(33,'Fools Gold'),(33,'I Am the Resurrection'),
+(34,'Loaded'),(34,'Come Together'),
+(35,'Common People'),(35,'Disco 2000'),
+(36,'This Is Hardcore'),(36,'Help the Aged'),
+(37,'Angels'),(37,'Let Me Entertain You'),
+(38,'Millennium'),(38,'No Regrets'),
+(39,'Midnight in Chelsea'),(39,'Queen of New Orleans'),
+(40,'Why Does It Always Rain on Me?'),(40,'Driftwood'),
+(41,'Sing'),(41,'Side'),
+(42,'Muscle Museum'),(42,'Uno'),
+(43,'Plug In Baby'),(43,'New Born'),
+(44,'Time Is Running Out'),(44,'Hysteria'),
+(45,'Mr Brightside'),(45,'Somebody Told Me'),
+(46,'When You Were Young'),(46,'Read My Mind'),
+(47,'I Bet You Look Good on the Dancefloor'),(47,'Fake Tales of San Francisco'),
+(48,'Brianstorm'),(48,'Fluorescent Adolescent'),
+(49,'Money'),(49,'Time'),
+(50,'Shine On You Crazy Diamond'),(50,'Wish You Were Here'),
+(51,'Money for Nothing'),(51,'Brothers in Arms'),
+(52,'Romeo and Juliet'),(52,'Tunnel of Love'),
+(53,'Little Lies'),(53,'Everywhere'),
+(54,'Dreams'),(54,'The Chain'),
+(55,'Stairway to Heaven'),(55,'Black Dog'),
+(56,'Life on Mars?'),(56,'Changes'),
+(57,'Heroes'),(57,'Sound and Vision'),
+(58,'Hallelujah'),(58,'Last Goodbye');
