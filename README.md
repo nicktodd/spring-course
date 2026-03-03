@@ -14,6 +14,7 @@
 
 [Testing your Spring Boot Application](docs/AddingSomeTests.md)
 
+[Testing a REST API with Cucumber and REST Assured](docs/cucumber.md)
 
 <!--# Exercises for the Spring with MongoDB and Gradle Pathway
 
