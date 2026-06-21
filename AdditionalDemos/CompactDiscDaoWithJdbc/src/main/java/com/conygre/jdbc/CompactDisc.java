@@ -1,3 +1,4 @@
+package com.conygre.jdbc;
 
 public class CompactDisc {
 	

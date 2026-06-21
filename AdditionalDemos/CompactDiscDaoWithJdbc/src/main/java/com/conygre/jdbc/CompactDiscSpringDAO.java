@@ -1,3 +1,5 @@
+package com.conygre.jdbc;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -8,11 +10,9 @@ public class CompactDiscSpringDAO extends JdbcDaoSupport {
 	
 	public CompactDisc getCdById(int id) {
 		
-		CompactDisc disc =  getJdbcTemplate().
-				queryForObject("select title, artist, id from compact_discs where id = ?", 
-						new Object[] {id}, 
-						new CompactDiscRowmapper() );
-		return disc;
+		return getJdbcTemplate().
+				queryForObject("select title, artist, id from compact_discs where id = ?",
+						new CompactDiscRowmapper(), id);
 		
 	}
 	
